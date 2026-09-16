@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>서준이의 여행 복습 100문제 🧳</title>
+<style>
+  :root { color-scheme: light; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; background: #f0f4f4; color: #2B3A3D; min-height: 100vh; display: flex; justify-content: center; padding: 20px 14px; padding-top: 54px; word-break: keep-all; overflow-wrap: break-word; }
+  .wrap { width: 100%; max-width: 560px; }
+  .card { background: #fff; color: #2B3A3D; border-radius: 16px; padding: 26px 22px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); margin-bottom: 14px; }
+  h1 { font-size: 1.25rem; color: #2F7C83; margin-bottom: 6px; line-height: 1.5; }
+  .sub { font-size: 0.9rem; color: #6B7B7E; margin-bottom: 18px; line-height: 1.8; }
+  .logo { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+  .logo .mark { width: 30px; height: 30px; border-radius: 9px; background: #2F7C83; color: #fff; font-size: 1rem; font-weight: bold; display: flex; align-items: center; justify-content: center; }
+  .logo .name { font-size: 0.85rem; font-weight: bold; color: #235E64; letter-spacing: -0.2px; }
+  #sound-toggle { position: fixed; font-family: inherit; top: 12px; right: 12px; z-index: 50; padding: 8px 14px; font-size: 0.82rem; font-weight: bold; color: #235E64; background: #fff; border: 1.5px solid #DBE4E5; border-radius: 999px; cursor: pointer; box-shadow: 0 1px 5px rgba(0,0,0,0.07); }
+  input[type=text] { width: 100%; padding: 13px; font-size: 1.05rem; border: 1.5px solid #DBE4E5; border-radius: 10px; background: #fff; color: #2B3A3D; }
+  input[type=text]::placeholder { color: #9aa8a5; }
+  .btn { display: block; width: 100%; margin-top: 14px; padding: 14px; font-size: 1.05rem; font-family: inherit; font-weight: bold; color: #fff; background: #2F7C83; border: none; border-radius: 10px; cursor: pointer; text-align: left; line-height: 1.5; }
+  .btn:disabled { background: #b8c4c2; cursor: default; }
+  .btn.sub-btn { background: #8fa5a1; }
+  .btn.center { text-align: center; }
+  .progress { font-size: 0.85rem; color: #6B7B7E; margin-bottom: 4px; display: flex; justify-content: space-between; }
+  .srctag { display: inline-block; font-size: 0.75rem; color: #235E64; background: #E6F1F1; border-radius: 6px; padding: 2px 8px; margin-bottom: 10px; }
+  .bar { height: 6px; background: #e3ecea; border-radius: 3px; margin-bottom: 14px; overflow: hidden; }
+  .bar > div { height: 100%; background: #2F7C83; border-radius: 3px; width: 0; transition: width .25s; }
+  .cardbox { background: #fff8e6;  border: 1px solid #f2e2b3; border-radius: 12px; padding: 16px 16px; margin-bottom: 14px; font-size: 0.95rem; line-height: 1.9; color: #4a4023; }
+  .cardbox h2 { font-size: 1.02rem; color: #a07800; margin-bottom: 10px; line-height: 1.5; }
+  .cardbox .ex { display: block; background: #fffdf6; border-left: 3px solid #e5cf8a; border-radius: 6px; padding: 9px 11px; margin: 9px 0; font-size: 0.93rem; line-height: 1.9; }
+  .cardbox b { color: #8a6400; }
+  details.tip { background: #fff8e6; border: 1px solid #f2e2b3; border-radius: 10px; padding: 10px 14px; margin-bottom: 14px; font-size: 0.9rem; line-height: 1.85; color: #6b5a1e; }
+  details.tip summary { cursor: pointer; font-weight: bold; color: #a07800; font-size: 0.85rem; }
+  details.tip .inner { margin-top: 8px; }
+  .qtext { font-size: 1.06rem; line-height: 1.85; margin-bottom: 16px; }
+  .choice { display: block; width: 100%; text-align: left; padding: 13px 14px; margin-bottom: 9px; font-size: 1rem; font-family: inherit; color: #2B3A3D; background: #f6f9f8; border: 1.5px solid #DBE4E5; border-radius: 10px; cursor: pointer; line-height: 1.5; }
+  .choice:active { background: #E6F1F1; }
+  .num { color: #2F7C83; font-weight: bold; margin-right: 7px; }
+  .keyhint { font-size: 0.78rem; color: #9aa8a5; text-align: center; margin-top: 10px; }
+  .saybtn { display: block; width: 100%; margin-bottom: 12px; padding: 11px; font-size: 0.95rem; font-family: inherit; font-weight: bold; color: #235E64; background: #E6F1F1; border: 1.5px solid #cfe0dc; border-radius: 10px; cursor: pointer; }
+  .saybtn:active { background: #d6e8e8; }
+  .say { display: inline-block; margin-left: 8px; padding: 1px 6px; font-size: 0.95rem; border-radius: 7px; background: #E6F1F1; cursor: pointer; }
+  .wordrow { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 14px; }
+  .wordchip { font-size: 0.92rem; font-family: inherit; color: #235E64; background: #E6F1F1; border: 1.5px solid #cfe0dc; border-radius: 999px; padding: 7px 12px; cursor: pointer; line-height: 1.4; }
+  .wordchip:active { background: #d6e8e8; }
+  .wordhint { font-size: 0.82rem; color: #6B7B7E; margin-bottom: 8px; }
+  .score-big { font-size: 2rem; font-weight: bold; color: #2F7C83; text-align: center; margin: 10px 0; }
+  .exp { background: #f6f9f8; border-left: 4px solid #2F7C83; border-radius: 8px; padding: 12px 14px; margin-bottom: 10px; font-size: 0.93rem; line-height: 1.8; }
+  .exp.wrong { border-left-color: #c0392b; background: #fdf5f4; }
+  .exp b { color: #235E64; }
+  .exp.wrong .exp-head b { color: #c0392b; }
+  .exp .ans-line { display: block; font-size: 0.85rem; color: #8a6b66; margin: 4px 0 6px; }
+  .btn .cnt { display: inline-block; font-size: 0.82rem; font-weight: normal; opacity: 0.85; margin-left: 4px; }
+  .btn.done { background: #cfe0dc; color: #4d6a64; }
+  .footer { text-align: center; font-size: 0.8rem; color: #9aa8a5; padding: 8px 0 24px; line-height: 1.7; }
+  .hidden { display: none; }
+</style>
+</head>
+<body>
+<button id="sound-toggle" type="button">🔊 소리 켜짐</button>
+<div class="wrap">
+
+  <!-- 시작 화면 -->
+  <div class="card" id="start-card">
+    <div class="logo"><div class="mark">영</div><div class="name">영핏 지나티처</div></div>
+    <h1>서준이의 여행 복습 100문제 🧳</h1>
+    <p class="sub">지금까지 배운 것 총복습 · 개념 카드 10장 + 문제 100문항 (10영역)<br>
+    여행 잘 다녀와요 서준아! ✈️ 여행 중에 <b>하루에 1~2영역씩</b> 천천히 풀어 보세요 😊<br>
+    this·that · be동사 · I/me · 복수 -s · 문장 순서 · 철자 · 길 안내 · 교통수단까지 한 번에 복습해요.<br>
+    카드 1장을 읽고 → 바로 그 유형 문제 10개! 이렇게 10번 반복해요 💪<br>
+    문제를 풀다가 헷갈리면 문제 위의 <b>[개념 카드 다시 보기]</b>를 누르면 돼요 💡<br>
+    🔊 <b>발음 듣기</b> 버튼과 보기 옆 🔊를 누르면 <b>원어민 발음</b>이 나와요. 꼭 따라 읽어 보세요!<br>
+    한 영역이 끝나면 결과를 복사해서 지나티처에게 카톡으로 보내주세요.<br>
+    푼 기록은 자동 저장되니 중간에 꺼져도 이어서 할 수 있어요 😊<br>
+    천천히, 하나씩 정확하게! 이름을 입력하고 시작하세요 🌱</p>
+    <input type="text" id="name-input" placeholder="이름을 입력하세요" maxlength="20" autocomplete="off">
+    <p class="sub" id="sec-pick-hint" style="margin:16px 0 -4px">👇 시작할 영역을 골라 주세요 (1영역부터 순서대로 푸는 걸 추천해요)</p>
+    <button class="btn sec-start" id="start-s1" data-sec="0" disabled>1영역 · this · that · these · those 시작 <span class="cnt">10문항</span></button>
+    <button class="btn sec-start sub-btn" id="start-s2" data-sec="1" disabled>2영역 · be동사 am · is · are 시작 <span class="cnt">10문항</span></button>
+    <button class="btn sec-start sub-btn" id="start-s3" data-sec="2" disabled>3영역 · 둘 이상이면 are 시작 <span class="cnt">10문항</span></button>
+    <button class="btn sec-start sub-btn" id="start-s4" data-sec="3" disabled>4영역 · be동사 뜻 3가지 시작 <span class="cnt">10문항</span></button>
+    <button class="btn sec-start sub-btn" id="start-s5" data-sec="4" disabled>5영역 · I 와 me 시작 <span class="cnt">10문항</span></button>
+    <button class="btn sec-start sub-btn" id="start-s6" data-sec="5" disabled>6영역 · 둘 이상이면 -s 시작 <span class="cnt">10문항</span></button>
+    <button class="btn sec-start sub-btn" id="start-s7" data-sec="6" disabled>7영역 · 우리말 → 영어 문장 시작 <span class="cnt">10문항</span></button>
+    <button class="btn sec-start sub-btn" id="start-s8" data-sec="7" disabled>8영역 · 철자 챙기기 시작 <span class="cnt">10문항</span></button>
+    <button class="btn sec-start sub-btn" id="start-s9" data-sec="8" disabled>9영역 · 길 안내 · 위치 말 시작 <span class="cnt">10문항</span></button>
+    <button class="btn sec-start sub-btn" id="start-s10" data-sec="9" disabled>10영역 · 교통수단 & by · take 시작 <span class="cnt">10문항</span></button>
+    <p class="keyhint" id="sec-done-note" style="margin-top:12px"></p>
+  </div>
+
+  <!-- 이어하기 화면 -->
+  <div class="card hidden" id="resume-card">
+    <div class="logo"><div class="mark">영</div><div class="name">영핏 지나티처</div></div>
+    <h1>이어서 풀 수 있어요! 🔄</h1>
+    <p class="sub" id="resume-info"></p>
+    <button class="btn center" id="resume-btn">이어서 하기</button>
+    <button class="btn sub-btn center" id="restart-btn">처음부터 다시 하기</button>
+  </div>
+
+  <!-- 개념 카드 화면 -->
+  <div class="card hidden" id="cards-card">
+    <div class="progress"><span id="card-num"></span><span id="card-sec"></span></div>
+    <div class="bar"><div id="card-bar"></div></div>
+    <div class="cardbox" id="cardbox"></div>
+    <p class="wordhint" id="word-hint">🔊 낱말을 누르면 원어민 발음이 나와요. 따라 읽어 보세요!</p>
+    <div class="wordrow" id="wordrow"></div>
+    <button class="btn center" id="card-next">개념 확인 끝! 문제 10개 풀러 가기 →</button>
+    <button class="btn sub-btn center" id="card-skip">카드 건너뛰고 바로 문제 풀기</button>
+  </div>
+
+  <!-- 문제 화면 -->
+  <div class="card hidden" id="quiz-card">
+    <div class="progress"><span id="prog-num"></span><span id="prog-pct"></span></div>
+    <div class="bar"><div id="bar-fill"></div></div>
+    <span class="srctag" id="srctag"></span>
+    <details class="tip" id="tipbox"><summary>💡 개념 카드 다시 보기 (헷갈리면 눌러요)</summary><div class="inner" id="tipinner"></div></details>
+    <div class="qtext" id="qtext"></div>
+    <button class="saybtn" id="say-btn" type="button">🔊 발음 듣기 (다시 들으려면 또 눌러요)</button>
+    <div id="choices"></div>
+    <p class="keyhint" id="keyhint">숫자키 1~4로도 선택할 수 있어요</p>
+  </div>
+
+  <!-- 영역별 결과 화면 -->
+  <div class="card hidden" id="sec-result-card">
+    <div class="logo"><div class="mark">영</div><div class="name">영핏 지나티처</div></div>
+    <h1 id="sec-result-title"></h1>
+    <div class="score-big" id="sec-score"></div>
+    <p class="sub" id="sec-wrong" style="text-align:center"></p>
+    <button class="btn center" id="sec-copy-btn"></button>
+    <button class="btn center" id="next-sec-btn" style="background:#38699e"></button>
+    <button class="btn sub-btn center" id="pick-sec-btn">다른 영역 고르기 →</button>
+    <div id="total-block" class="hidden" style="margin-top:22px; border-top:2px dashed #DBE4E5; padding-top:18px">
+      <p class="sub" style="text-align:center; margin-bottom:4px">🏆 전체 최종 결과</p>
+      <div class="score-big" id="total-score"></div>
+      <p class="sub" id="total-detail" style="text-align:center"></p>
+      <button class="btn center" id="total-copy-btn">전체 결과 복사 (카톡용)</button>
+    </div>
+    <div style="margin-top:20px">
+      <p class="sub" style="margin-bottom:10px">📝 이 영역 해설 — 틀린 문제 위주로 꼭 읽어보세요!</p>
+      <div id="sec-explanations"></div>
+    </div>
+  </div>
+
+  <div class="footer">영핏 지나티처 · 즐거운 여행 되고, 복습도 화이팅! 🧳</div>
+</div>
+
+<script>
+"use strict";
+
+/* ══════ 결과 기록 (영핏 공통) ══════ */
+var ENGFIT_SUBMIT_URL = "https://script.google.com/macros/s/AKfycbz5IC3cEtaBGW10qZhrjwtjdtGugmcmYb4ZTHS4k-1LOqTRYzW-LfoAPyFB_ShjAqNp/exec";
+async function engfitSubmit(r) {
+  var body = JSON.stringify(r);
+  try {
+    var res = await fetch(ENGFIT_SUBMIT_URL, { method: "POST", body: body });
+    var j = await res.json();
+    return j.ok === true;
+  } catch (e) {
+    try {
+      await fetch(ENGFIT_SUBMIT_URL, { method: "POST", mode: "no-cors", body: body });
+      return true;
+    } catch (e2) { return false; }
+  }
+}
+
+/* ══════ 원어민 발음 듣기 (브라우저 내장 음성) + 영역 완료 팡파르 ══════ */
+var SOUND_KEY = "engfit-sound";
+var soundOn = true;
+try { soundOn = localStorage.getItem(SOUND_KEY) !== "off"; } catch (e) {}
+var audioCtx = null;
+function ensureCtx() {
+  try {
+    if (!audioCtx) {
+      var AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return null;
+      audioCtx = new AC();
+    }
+    if (audioCtx.state === "suspended" && audioCtx.resume) audioCtx.resume();
+    return audioCtx;
+  } catch (e) { return null; }
+}
+function tone(freq, startAt, dur, peak) {
+  try {
+    var ctx = audioCtx;
+    if (!ctx) return;
+    var o = ctx.createOscillator();
+    var g = ctx.createGain();
+    o.type = "sine";
+    o.frequency.value = freq;
+    var t0 = ctx.currentTime + startAt;
+    g.gain.setValueAtTime(0.0001, t0);
+    g.gain.exponentialRampToValueAtTime(peak, t0 + 0.02);
+    g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
+    o.connect(g); g.connect(ctx.destination);
+    o.start(t0); o.stop(t0 + dur + 0.02);
+  } catch (e) {}
+}
+/* 원어민 발음 (Web Speech API · 외부 파일 없음) */
+var speechOK = (typeof window.speechSynthesis !== "undefined" && typeof window.SpeechSynthesisUtterance !== "undefined");
+var enVoice = null;
+/* 미국 여성 목소리만 사용 (en-US + 여성 이름 우선, 남성 목소리 제외) */
+var FEMALE_US = ["google us english", "zira", "aria", "jenny", "michelle", "ava", "samantha", "allison", "susan", "joanna", "salli", "kimberly", "nanci", "emma", "eva", "female"];
+var MALE_ANY = ["david", "mark", "guy", "alex", "fred", "eric", "christopher", "roger", "steffan", "tony", "brandon", "daniel", "james", "male"];
+function isMaleName(n) {
+  n = (n || "").toLowerCase();
+  for (var i = 0; i < MALE_ANY.length; i++) { if (n.indexOf(MALE_ANY[i]) !== -1) return true; }
+  return false;
+}
+function femaleRank(n) {
+  n = (n || "").toLowerCase();
+  for (var i = 0; i < FEMALE_US.length; i++) { if (n.indexOf(FEMALE_US[i]) !== -1) return i; }
+  return 999;
+}
+function pickVoice() {
+  try {
+    var vs = window.speechSynthesis.getVoices() || [];
+    var us = [], en = [];
+    for (var i = 0; i < vs.length; i++) {
+      var lang = (vs[i].lang || "").replace("_", "-");
+      if (/^en-US/i.test(lang)) us.push(vs[i]);
+      else if (/^en/i.test(lang)) en.push(vs[i]);
+    }
+    function best(list) {
+      var pool = list.filter(function (v) { return !isMaleName(v.name); });
+      if (!pool.length) pool = list;
+      pool = pool.slice().sort(function (a, b) { return femaleRank(a.name) - femaleRank(b.name); });
+      return pool.length ? pool[0] : null;
+    }
+    enVoice = best(us) || best(en) || null;
+  } catch (e) { enVoice = null; }
+}
+var pendingSay = null;
+function onVoicesReady() {
+  pickVoice();
+  if (enVoice && pendingSay) { var t = pendingSay; pendingSay = null; speak(t); }
+}
+if (speechOK) {
+  pickVoice();
+  try { window.speechSynthesis.onvoiceschanged = onVoicesReady; } catch (e) {}
+  /* 크롬은 목소리 목록이 늦게 로딩됨 — 준비될 때까지 폴링 (준비 전엔 한국어 기본 목소리로 읽히는 사고 방지) */
+  var voiceTries = 0;
+  var voiceTimer = setInterval(function () {
+    voiceTries++;
+    if (!enVoice) onVoicesReady();
+    if (enVoice || voiceTries > 60) clearInterval(voiceTimer);
+  }, 250);
+}
+function stripTags(s) { return String(s).replace(/<[^>]*>/g, "").replace(/[（(]\s*[）)]/g, " ").trim(); }
+function isEnglish(s) { var t = stripTags(s); return /[A-Za-z]/.test(t) && !/[\uAC00-\uD7A3]/.test(t); }
+function speak(text, rate) {
+  if (!soundOn || !speechOK) return;
+  var t = stripTags(text);
+  if (!t) return;
+  try {
+    if (!enVoice) pickVoice();
+    if (!enVoice || !/^en/i.test((enVoice.lang || "").replace("_", "-"))) {
+      /* 영어 목소리가 아직 없으면 저장만 해 두고, 준비되면 그때 읽어 준다 (한국어 목소리로 읽히는 것 방지) */
+      pendingSay = t;
+      return;
+    }
+    window.speechSynthesis.cancel();
+    var u = new window.SpeechSynthesisUtterance(t);
+    u.lang = "en-US";
+    if (enVoice) u.voice = enVoice;
+    u.rate = rate || 0.85;
+    u.pitch = 1;
+    window.speechSynthesis.speak(u);
+  } catch (e) {}
+}
+function stopSpeak() { try { if (speechOK) window.speechSynthesis.cancel(); } catch (e) {} }
+function playFanfare() {
+  if (!soundOn || !ensureCtx()) return;
+  tone(523.25, 0, 0.16, 0.15); tone(659.25, 0.12, 0.16, 0.15);
+  tone(784, 0.24, 0.16, 0.15); tone(1046.5, 0.36, 0.40, 0.18);
+}
+var soundBtn = document.getElementById("sound-toggle");
+function paintSoundBtn() { soundBtn.textContent = soundOn ? "🔊 소리 켜짐" : "🔇 소리 꺼짐"; }
+soundBtn.addEventListener("click", function () {
+  soundOn = !soundOn;
+  try { localStorage.setItem(SOUND_KEY, soundOn ? "on" : "off"); } catch (e) {}
+  paintSoundBtn();
+  if (soundOn) { ensureCtx(); speak("Hello", 0.9); } else { stopSpeak(); }
+});
+paintSoundBtn();
+
+/* ══════ 개념 카드 10장 ══════ */
+var C1 = "1. this · that · these · those — 가까이? 멀리? 하나? 여럿?";
+var C2 = "2. be동사 am · is · are — 주어에 맞춰 골라요";
+var C3 = "3. 둘 이상이면 무조건 are!";
+var C4 = "4. be동사의 뜻 3가지 — 이다 · 있다 · (상태)하다";
+var C5 = "5. I 와 me — 자리가 달라요";
+var C6 = "6. 둘 이상이면 -s 붙이기";
+var C7 = "7. 우리말 → 영어 문장, 순서가 중요해요";
+var C8 = "8. 철자 챙기기 — 가운데 n 을 놓치지 마요";
+var C9 = "9. 길 안내 · 위치 말 (Unit 18 · 19)";
+var C10 = "10. 교통수단 & by · take (Unit 20)";
+var TIPS = {};
+var WORDS = {};
+TIPS[C1] = "물건을 가리킬 때 <b>거리</b>와 <b>개수</b> 두 가지만 생각하면 돼요 👉<span class='ex'>가까이 + 하나 → <b>this</b> 이것<br>멀리 + 하나 → <b>that</b> 저것<br>가까이 + 여럿 → <b>these</b> 이것들<br>멀리 + 여럿 → <b>those</b> 저것들</span>⭐ 하나(this · that) 뒤에는 <b>is</b>, 여럿(these · those) 뒤에는 <b>are</b>!<span class='ex'><b>This is</b> a pen. (이것은 펜이야.)<br><b>These are</b> pens. (이것들은 펜들이야.)</span>💡 these · those 를 쓰면 뒤의 물건 이름에도 <b>-s</b> 가 붙어요 (pen → pen<b>s</b>) 😊";
+WORDS[C1] = ["this", "that", "these", "those", "This is a pen.", "These are pens."];
+TIPS[C2] = "be동사는 <b>주어(누가)</b>를 보고 골라요 🔍<span class='ex'><b>I</b> → <b>am</b><br><b>You · We · They</b> → <b>are</b><br><b>He · She · It</b> → <b>is</b></span>⭐ 사람 이름이나 물건 하나는 <b>he · she · it</b> 으로 바꿔 생각해요.<span class='ex'>My dad(= he) <b>is</b> a cook.<br>This computer(= it) <b>is</b> new.</span>💡 주어를 <b>I / you / he / she / it / we / they</b> 중 하나로 바꿔 보면 답이 바로 보여요 😊";
+WORDS[C2] = ["I am", "You are", "He is", "She is", "It is", "We are", "They are"];
+TIPS[C3] = "주어가 <b>둘 이상</b>이면 be동사는 언제나 <b>are</b> 예요 👫<span class='ex'><b>Peter and Sam</b> → 두 명 → <b>are</b><br><b>My sister and I</b> → 두 명 → <b>are</b> (I 가 있어도 am 아님!)<br><b>The pencils</b> → -s, 여러 개 → <b>are</b></span>⭐ <b>and</b> 가 보이면 → 사람·물건이 <b>두 개 이상</b> → are<br>⭐ 끝에 <b>-s</b> 가 붙은 주어 → 여러 개 → are<span class='ex'>This computer <b>is</b> new. → <b>These computers are</b> new.<br>👉 주어를 여럿으로 바꾸면 <b>동사도 are</b> 로 함께 바꿔요!</span>💡 주어 바로 앞의 I 만 보고 am 을 고르지 말고, <b>주어 전체</b>를 봐요 😊";
+WORDS[C3] = ["Peter and Sam are brothers.", "My sister and I are happy.", "The pencils are on the desk."];
+TIPS[C4] = "be동사(am · is · are)는 뒤에 오는 말에 따라 뜻이 달라져요 🎈<span class='ex'>① 뒤에 <b>사람·물건 이름</b> → <b>~이다</b><br>He is <b>a doctor</b>. 그는 의사<b>이다</b>.</span><span class='ex'>② 뒤에 <b>장소</b>(in · on · under · at ~) → <b>~에 있다</b><br>The cat is <b>on the bed</b>. 고양이는 침대 위에 <b>있다</b>.</span><span class='ex'>③ 뒤에 <b>기분·모습</b>(happy · tall · hungry) → <b>~(하)다</b><br>I am <b>happy</b>. 나는 행복<b>하다</b>.</span>💡 be동사 <b>바로 뒤의 말</b>을 보고 뜻을 정해요 😊";
+WORDS[C4] = ["He is a doctor.", "The cat is on the bed.", "I am happy."];
+TIPS[C5] = "<b>I</b> 도 '나', <b>me</b> 도 '나'. 차이는 <b>자리</b>예요 📍<span class='ex'>문장 <b>맨 앞 주인공 자리</b> → <b>I</b> (나는)<br><b>I</b> like pizza. 나는 피자를 좋아해.</span><span class='ex'><b>동사 뒤 · for · with 뒤</b> → <b>me</b> (나를, 나에게)<br>She likes <b>me</b>. 그녀는 나를 좋아해.<br>Come with <b>me</b>. 나와 함께 가자.</span><span class='ex'>짝꿍 표<br>I → me · he → him · she → her<br>we → us · they → them · you → you</span>💡 '~은/는/이/가' 면 앞쪽(I · he · she), '~을/를/와' 면 뒤쪽(me · him · her) 😊";
+WORDS[C5] = ["I", "me", "he", "him", "she", "her", "we", "us", "they", "them"];
+TIPS[C6] = "물건이나 사람이 <b>둘 이상</b>이면 끝에 <b>-s</b> 를 붙여요 ✏️<span class='ex'>a pencil → two pencil<b>s</b><br>a friend → three friend<b>s</b><br>a student → many student<b>s</b></span><span class='ex'>s · x · ch · sh 로 끝나면 <b>-es</b><br>box → box<b>es</b> · bus → bus<b>es</b></span>⭐ <b>a</b> 는 '하나'라는 뜻이라 <b>a</b> 뒤에는 -s 를 붙이지 않아요 → a book ⭕ / a books ❌<br>💡 숫자(two · three)나 many · these · those 가 보이면 <b>-s 체크!</b> 😊";
+WORDS[C6] = ["two pencils", "three friends", "many students", "boxes", "a book"];
+TIPS[C7] = "영어 문장은 <b>누가 → be동사 → 무엇/어디/어떤</b> 순서예요 🚂<span class='ex'>나는 / 학생이다<br>→ <b>I</b> + <b>am</b> + <b>a student</b>.</span><span class='ex'>그 책은 / 책상 위에 / 있다<br>→ <b>The book</b> + <b>is</b> + <b>on the desk</b>.</span>⭐ 우리말의 '<b>~은/는/이/가</b>' 붙은 말이 영어 문장의 <b>맨 앞</b>에 와요.<br>⭐ 주어와 뒷말을 <b>바꾸면 뜻이 달라져요</b> → The desk is on the book. (책상이 책 위에?! 😮)<br>💡 거꾸로 동사를 보고 주어를 찾을 수도 있어요 → <b>am</b> 이면 주어는 <b>I</b>, <b>are</b> 면 you · we · they 😊";
+WORDS[C7] = ["I am a student.", "The book is on the desk.", "He is a singer."];
+TIPS[C8] = "서준이는 단어를 거의 다 알아요! 가끔 <b>가운데 글자</b>, 특히 <b>n</b> 을 놓치는 것만 조심하면 돼요 🔍<span class='ex'>stude<b>n</b>ts 학생들 · si<b>n</b>ger 가수 · te<b>n</b> 10<br>frie<b>n</b>ds 친구들 · wi<b>n</b>dow 창문 · ha<b>n</b>d 손 · wa<b>n</b>t 원하다 · pe<b>n</b>cil 연필</span><span class='ex'>두 번 쓰는 글자: ha<b>pp</b>y<br>순서 조심: fr<b>ie</b>nds (i 먼저!) · li<b>br</b>ary</span>💡 쓰고 나서 <b>한 글자씩 소리 내어</b> 읽어 보기 🔊 '스-튜-던-츠' — n 소리가 들리면 n 이 있는 거예요 😊";
+WORDS[C8] = ["students", "singer", "ten", "friends", "window", "hand", "want", "pencil", "happy", "library"];
+TIPS[C9] = "길을 알려 주는 말과 위치를 말하는 말을 한 번에 정리해요 🗺️<span class='ex'><b>go straight</b> 곧장 가다 · <b>turn left/right</b> 왼쪽/오른쪽으로 돌다<br><b>cross</b> 건너다 · <b>corner</b> 모퉁이 · <b>block</b> 구역</span><span class='ex'><b>near = close to</b> 가까이에 ↔ <b>far from</b> 멀리<br><b>above</b> 위에 ↔ <b>below</b> 아래에<br><b>beside</b> 옆에 · <b>across from</b> 맞은편에 · <b>around</b> 주위에</span><span class='ex'><b>top</b> 맨 위 · <b>middle</b> 가운데 · <b>bottom</b> 맨 아래</span>💡 반대말 짝(close to ↔ far from, above ↔ below, top ↔ bottom)으로 묶어서 기억해요 😊";
+WORDS[C9] = ["go straight", "turn left", "turn right", "cross", "corner", "close to", "far from", "above", "below", "beside", "across from", "top", "bottom"];
+TIPS[C10] = "타고 다니는 것들이에요 🚌🚇✈️<span class='ex'><b>car</b> 자동차 · <b>bus</b> 버스 · <b>taxi</b> 택시 · <b>truck</b> 트럭<br><b>subway</b> 지하철 · <b>train</b> 기차 · <b>ship</b> 배 · <b>airplane</b> 비행기</span><span class='ex'><b>get on</b> 올라타다 ↔ <b>get off</b> 내리다</span><span class='ex'><b>by</b> + 교통수단 (a 없음!) → I go to school <b>by bus</b>.<br><b>take</b> + a/the + 교통수단 → I <b>take a</b> taxi. / I <b>take the</b> subway.</span>💡 by 뒤에는 a 없이, take 뒤에는 a/the 를 넣어요 😊";
+WORDS[C10] = ["taxi", "truck", "subway", "airplane", "get on", "get off", "by bus", "I take the subway."];
+
+/* ══════ 문제 100문항 (영역마다 카드 1장 → 문제 10개) ══════ */
+var ALL = [
+/* ═══ 1영역 · this · that · these · those ═══ */
+{"src": C1, "q": "빈칸에 알맞은 말을 고르세요.<br><b>(　　) is my bag.</b><br><span style='font-size:.88rem;color:#6B7B7E'>이것은 내 가방이야.</span>", "choices": ["This", "These", "Those", "They"], "answer": "This", "say": "This is my bag.", "spk": true, "exp": "정답은 <b>This</b><br>'<b>이것</b>' = 가까이 + 하나 → <b>this</b>. 뒤에 <b>is</b> 가 온 것도 '하나'라는 힌트예요.<br>· <b>These</b> ❌ — '이것들' — 여럿일 때 써요. 여럿이면 are 가 와야 해요<br>· <b>Those</b> ❌ — '저것들' — 멀리 있는 여럿이에요<br>· <b>They</b> ❌ — '그들, 그것들' — 가리키는 말이 아니에요<br>💡 is 앞에는 <b>this · that</b>, are 앞에는 <b>these · those</b> 😊"},
+{"src": C1, "q": "빈칸에 알맞은 말을 고르세요.<br><b>(　　) are cats.</b><br><span style='font-size:.88rem;color:#6B7B7E'>저것들은 고양이들이야.</span>", "choices": ["Those", "That", "This", "It"], "answer": "Those", "say": "Those are cats.", "spk": true, "exp": "정답은 <b>Those</b><br>'<b>저것들</b>' = 멀리 + 여럿 → <b>those</b>. cat<b>s</b>, <b>are</b> 도 여럿이라는 힌트!<br>· <b>That</b> ❌ — '저것' — 하나일 때 써요<br>· <b>This</b> ❌ — '이것' — 가까이 있는 하나예요<br>· <b>It</b> ❌ — '그것' — 하나일 때 쓰고 뒤에 is 가 와요<br>💡 여럿 + 멀리 = <b>those</b> 👉👉"},
+{"src": C1, "q": "<b>these</b> 의 뜻으로 알맞은 것을 고르세요.", "choices": ["이것들", "저것들", "이것", "저것"], "answer": "이것들", "say": "these", "spk": true, "exp": "정답은 <b>이것들</b><br><b>these</b> 는 <b>가까이 있는 여러 개</b>, '이것들'이에요.<br>· <b>저것들</b> ❌ — those 의 뜻이에요<br>· <b>이것</b> ❌ — this 의 뜻이에요<br>· <b>저것</b> ❌ — that 의 뜻이에요<br>💡 this(이것) → these(이것들), that(저것) → those(저것들) 짝으로 외워요 😊"},
+{"src": C1, "q": "<b>that</b> 의 뜻으로 알맞은 것을 고르세요.", "choices": ["저것", "이것", "이것들", "저것들"], "answer": "저것", "say": "that", "spk": true, "exp": "정답은 <b>저것</b><br><b>that</b> 은 <b>멀리 있는 하나</b>, '저것'이에요.<br>· <b>이것</b> ❌ — this 의 뜻이에요<br>· <b>이것들</b> ❌ — these 의 뜻이에요<br>· <b>저것들</b> ❌ — those 의 뜻이에요<br>💡 손가락으로 멀리 하나를 가리키며 '<b>that</b>' 하고 말해 봐요 👉"},
+{"src": C1, "q": "빈칸에 알맞은 말을 고르세요.<br><b>(　　) are my pencils.</b><br><span style='font-size:.88rem;color:#6B7B7E'>이것들은 내 연필들이야.</span>", "choices": ["These", "This", "That", "It"], "answer": "These", "say": "These are my pencils.", "spk": true, "exp": "정답은 <b>These</b><br>'<b>이것들</b>' = 가까이 + 여럿 → <b>these</b>.<br>· <b>This</b> ❌ — 하나일 때 써요. This is my pencil. 이 되어야 해요<br>· <b>That</b> ❌ — 멀리 있는 하나예요<br>· <b>It</b> ❌ — 하나일 때 써요<br>💡 pencil<b>s</b> 의 -s 와 are 가 '여럿'이라는 신호예요 🔍"},
+{"src": C1, "q": "빈칸에 알맞은 말을 고르세요.<br><b>That (　　) a tree.</b><br><span style='font-size:.88rem;color:#6B7B7E'>저것은 나무야.</span>", "choices": ["is", "are", "am", "be"], "answer": "is", "say": "That is a tree.", "spk": true, "exp": "정답은 <b>is</b><br><b>that</b> 은 하나 → <b>is</b>.<br>· <b>are</b> ❌ — 여럿(these · those)일 때 써요<br>· <b>am</b> ❌ — I 하고만 짝이에요<br>· <b>be</b> ❌ — be 는 문장에서 그대로 쓰지 않고 am · is · are 로 바꿔 써요<br>💡 this · that → <b>is</b> / these · those → <b>are</b> 😊"},
+{"src": C1, "q": "빈칸에 알맞은 말을 고르세요.<br><b>These (　　) apples.</b><br><span style='font-size:.88rem;color:#6B7B7E'>이것들은 사과들이야.</span>", "choices": ["are", "is", "am", "be"], "answer": "are", "say": "These are apples.", "spk": true, "exp": "정답은 <b>are</b><br><b>these</b> 는 여럿 → <b>are</b>.<br>· <b>is</b> ❌ — 하나(this · that)일 때 써요<br>· <b>am</b> ❌ — I 하고만 짝이에요<br>· <b>be</b> ❌ — 문장에서는 am · is · are 중 하나로 바꿔 써요<br>💡 apple<b>s</b> 처럼 -s 가 붙은 여럿이면 are! 😊"},
+{"src": C1, "q": "<b>바르게 쓴</b> 문장을 고르세요.", "choices": ["Those are my shoes.", "Those is my shoes.", "That are my shoes.", "This are my shoes."], "answer": "Those are my shoes.", "say": "Those are my shoes.", "spk": false, "exp": "정답은 <b>Those are my shoes.</b><br>those(여럿) + <b>are</b> + shoe<b>s</b>, 셋 다 '여럿'으로 딱 맞아요.<br>· <b>Those is my shoes.</b> ❌ — those 는 여럿이라 is 가 아니라 are 예요<br>· <b>That are my shoes.</b> ❌ — that 은 하나라 are 가 아니라 is 예요<br>· <b>This are my shoes.</b> ❌ — this 는 하나라 are 와 짝이 안 맞아요<br>💡 가리키는 말과 be동사가 <b>짝이 맞는지</b> 꼭 확인해요 👀"},
+{"src": C1, "q": "<b>멀리 있는 새 여러 마리</b>를 가리키며 할 말로 알맞은 것을 고르세요.", "choices": ["Those are birds.", "These are birds.", "That is a bird.", "This is a bird."], "answer": "Those are birds.", "say": "Those are birds.", "spk": true, "exp": "정답은 <b>Those are birds.</b><br>멀리 + 여럿 → <b>Those are</b> birds.<br>· <b>These are birds.</b> ❌ — '이것들' — 가까이 있는 여럿이에요<br>· <b>That is a bird.</b> ❌ — 멀리 있지만 한 마리일 때 써요<br>· <b>This is a bird.</b> ❌ — 가까이 있는 한 마리일 때 써요<br>💡 거리(가까이/멀리)와 개수(하나/여럿), 두 가지를 모두 따져요 😊"},
+{"src": C1, "q": "<b>This is a dog.</b> 를 '<b>이것들은 개들이야</b>'로 바르게 바꾼 것을 고르세요.", "choices": ["These are dogs.", "These is dogs.", "These are dog.", "This are dogs."], "answer": "These are dogs.", "say": "These are dogs.", "spk": false, "exp": "정답은 <b>These are dogs.</b><br>여럿으로 바꿀 때는 <b>세 군데</b>를 함께 바꿔요 → This→<b>These</b>, is→<b>are</b>, a dog→<b>dogs</b><br>· <b>These is dogs.</b> ❌ — is 를 are 로 바꾸지 않았어요<br>· <b>These are dog.</b> ❌ — dog 에 -s 를 붙이지 않았어요<br>· <b>This are dogs.</b> ❌ — This 를 These 로 바꾸지 않았어요<br>💡 하나 → 여럿으로 바꿀 때 체크 3개: <b>These · are · -s</b> ✅✅✅"},
+/* ═══ 2영역 · be동사 am · is · are ═══ */
+{"src": C2, "q": "빈칸에 알맞은 말을 고르세요.<br><b>I (　　) a student.</b><br><span style='font-size:.88rem;color:#6B7B7E'>나는 학생이야.</span>", "choices": ["am", "is", "are", "be"], "answer": "am", "say": "I am a student.", "spk": true, "exp": "정답은 <b>am</b><br>주어가 <b>I</b> 이면 언제나 <b>am</b>!<br>· <b>is</b> ❌ — 주어가 he · she · it 처럼 <b>하나</b>일 때 써요<br>· <b>are</b> ❌ — 주어가 you · we · they 이거나 <b>둘 이상</b>일 때 써요<br>· <b>be</b> ❌ — 문장에서는 그대로 쓰지 않고 am · is · are 로 바꿔 써요<br>💡 I 와 am 은 늘 붙어 다니는 단짝이에요 → <b>I am</b> 😊"},
+{"src": C2, "q": "빈칸에 알맞은 말을 고르세요.<br><b>She (　　) my sister.</b><br><span style='font-size:.88rem;color:#6B7B7E'>그녀는 내 여동생이야.</span>", "choices": ["is", "am", "are", "be"], "answer": "is", "say": "She is my sister.", "spk": true, "exp": "정답은 <b>is</b><br>주어가 <b>she</b> → <b>is</b>.<br>· <b>am</b> ❌ — 주어가 <b>I</b> 일 때만 써요<br>· <b>are</b> ❌ — 주어가 you · we · they 이거나 <b>둘 이상</b>일 때 써요<br>· <b>be</b> ❌ — 문장에서는 그대로 쓰지 않고 am · is · are 로 바꿔 써요<br>💡 he · she · it 은 <b>is</b> 😊"},
+{"src": C2, "q": "빈칸에 알맞은 말을 고르세요.<br><b>You (　　) kind.</b><br><span style='font-size:.88rem;color:#6B7B7E'>너는 친절해.</span>", "choices": ["are", "is", "am", "be"], "answer": "are", "say": "You are kind.", "spk": true, "exp": "정답은 <b>are</b><br>주어가 <b>you</b> → <b>are</b>.<br>· <b>is</b> ❌ — 주어가 he · she · it 처럼 <b>하나</b>일 때 써요<br>· <b>am</b> ❌ — 주어가 <b>I</b> 일 때만 써요<br>· <b>be</b> ❌ — 문장에서는 그대로 쓰지 않고 am · is · are 로 바꿔 써요<br>💡 you 는 한 명이어도 <b>are</b> 를 써요. 꼭 기억! ⭐"},
+{"src": C2, "q": "빈칸에 알맞은 말을 고르세요.<br><b>He (　　) tall.</b><br><span style='font-size:.88rem;color:#6B7B7E'>그는 키가 커.</span>", "choices": ["is", "am", "are", "be"], "answer": "is", "say": "He is tall.", "spk": true, "exp": "정답은 <b>is</b><br>주어가 <b>he</b> → <b>is</b>.<br>· <b>am</b> ❌ — 주어가 <b>I</b> 일 때만 써요<br>· <b>are</b> ❌ — 주어가 you · we · they 이거나 <b>둘 이상</b>일 때 써요<br>· <b>be</b> ❌ — 문장에서는 그대로 쓰지 않고 am · is · are 로 바꿔 써요<br>💡 he · she · it 은 <b>is</b> 😊"},
+{"src": C2, "q": "빈칸에 알맞은 말을 고르세요.<br><b>It (　　) a cat.</b><br><span style='font-size:.88rem;color:#6B7B7E'>그것은 고양이야.</span>", "choices": ["is", "am", "are", "be"], "answer": "is", "say": "It is a cat.", "spk": true, "exp": "정답은 <b>is</b><br>주어가 <b>it</b> → <b>is</b>.<br>· <b>am</b> ❌ — 주어가 <b>I</b> 일 때만 써요<br>· <b>are</b> ❌ — 주어가 you · we · they 이거나 <b>둘 이상</b>일 때 써요<br>· <b>be</b> ❌ — 문장에서는 그대로 쓰지 않고 am · is · are 로 바꿔 써요<br>💡 it 도 하나라서 <b>is</b> 😊"},
+{"src": C2, "q": "빈칸에 알맞은 말을 고르세요.<br><b>We (　　) friends.</b><br><span style='font-size:.88rem;color:#6B7B7E'>우리는 친구야.</span>", "choices": ["are", "is", "am", "be"], "answer": "are", "say": "We are friends.", "spk": true, "exp": "정답은 <b>are</b><br>주어가 <b>we</b>(우리, 여러 명) → <b>are</b>.<br>· <b>is</b> ❌ — 주어가 he · she · it 처럼 <b>하나</b>일 때 써요<br>· <b>am</b> ❌ — 주어가 <b>I</b> 일 때만 써요<br>· <b>be</b> ❌ — 문장에서는 그대로 쓰지 않고 am · is · are 로 바꿔 써요<br>💡 we · they · you 는 <b>are</b> 😊"},
+{"src": C2, "q": "빈칸에 알맞은 말을 고르세요.<br><b>They (　　) happy.</b><br><span style='font-size:.88rem;color:#6B7B7E'>그들은 행복해.</span>", "choices": ["are", "is", "am", "be"], "answer": "are", "say": "They are happy.", "spk": true, "exp": "정답은 <b>are</b><br>주어가 <b>they</b>(그들, 여러 명) → <b>are</b>.<br>· <b>is</b> ❌ — 주어가 he · she · it 처럼 <b>하나</b>일 때 써요<br>· <b>am</b> ❌ — 주어가 <b>I</b> 일 때만 써요<br>· <b>be</b> ❌ — 문장에서는 그대로 쓰지 않고 am · is · are 로 바꿔 써요<br>💡 we · they · you 는 <b>are</b> 😊"},
+{"src": C2, "q": "빈칸에 알맞은 말을 고르세요.<br><b>My dad (　　) a cook.</b><br><span style='font-size:.88rem;color:#6B7B7E'>우리 아빠는 요리사야.</span>", "choices": ["is", "am", "are", "be"], "answer": "is", "say": "My dad is a cook.", "spk": true, "exp": "정답은 <b>is</b><br><b>My dad</b> 는 한 사람, <b>he</b> 로 바꿀 수 있어요 → <b>is</b>.<br>· <b>am</b> ❌ — 주어가 <b>I</b> 일 때만 써요<br>· <b>are</b> ❌ — 주어가 you · we · they 이거나 <b>둘 이상</b>일 때 써요<br>· <b>be</b> ❌ — 문장에서는 그대로 쓰지 않고 am · is · are 로 바꿔 써요<br>💡 사람 이름·가족은 <b>he / she</b> 로 바꿔서 생각해요 🔍"},
+{"src": C2, "q": "빈칸에 알맞은 말을 고르세요.<br><b>This computer (　　) new.</b><br><span style='font-size:.88rem;color:#6B7B7E'>이 컴퓨터는 새것이야.</span>", "choices": ["is", "am", "are", "be"], "answer": "is", "say": "This computer is new.", "spk": true, "exp": "정답은 <b>is</b><br><b>This computer</b> 는 컴퓨터 한 대, <b>it</b> 으로 바꿀 수 있어요 → <b>is</b>.<br>· <b>am</b> ❌ — 주어가 <b>I</b> 일 때만 써요<br>· <b>are</b> ❌ — 주어가 you · we · they 이거나 <b>둘 이상</b>일 때 써요<br>· <b>be</b> ❌ — 문장에서는 그대로 쓰지 않고 am · is · are 로 바꿔 써요<br>💡 물건 하나는 <b>it</b> → is 😊"},
+{"src": C2, "q": "빈칸에 <b>am</b> 이 들어가는 문장을 고르세요.", "choices": ["I ___ ten years old.", "She ___ ten years old.", "They ___ ten years old.", "He ___ ten years old."], "answer": "I ___ ten years old.", "say": "I am ten years old.", "spk": false, "exp": "정답은 <b>I ___ ten years old.</b><br>am 은 오직 <b>I</b> 하고만 짝이에요. → I <b>am</b> ten years old. (나는 열 살이야.)<br>· <b>She ___ ten years old.</b> ❌ — she 는 <b>is</b> 예요<br>· <b>They ___ ten years old.</b> ❌ — they 는 <b>are</b> 예요<br>· <b>He ___ ten years old.</b> ❌ — he 는 <b>is</b> 예요<br>💡 am 을 보면 주어는 무조건 <b>I</b> 😊"},
+/* ═══ 3영역 · 둘 이상이면 are ═══ */
+{"src": C3, "q": "빈칸에 알맞은 말을 고르세요.<br><b>Peter and Sam (　　) brothers.</b><br><span style='font-size:.88rem;color:#6B7B7E'>Peter와 Sam은 형제야.</span>", "choices": ["are", "is", "am", "be"], "answer": "are", "say": "Peter and Sam are brothers.", "spk": true, "exp": "정답은 <b>are</b><br>Peter <b>and</b> Sam → 두 명 → <b>are</b>.<br>· <b>is</b> ❌ — 주어가 he · she · it 처럼 <b>하나</b>일 때 써요<br>· <b>am</b> ❌ — 주어가 <b>I</b> 일 때만 써요<br>· <b>be</b> ❌ — 문장에서는 그대로 쓰지 않고 am · is · are 로 바꿔 써요<br>💡 <b>and</b> 로 이어진 주어는 둘 이상 → are 😊"},
+{"src": C3, "q": "빈칸에 알맞은 말을 고르세요.<br><b>My sister and I (　　) happy.</b><br><span style='font-size:.88rem;color:#6B7B7E'>내 여동생과 나는 행복해.</span>", "choices": ["are", "is", "am", "be"], "answer": "are", "say": "My sister and I are happy.", "spk": true, "exp": "정답은 <b>are</b><br>My sister <b>and I</b> → 두 명 → <b>are</b>. I 가 있어도 am 이 아니에요!<br>· <b>is</b> ❌ — 주어가 he · she · it 처럼 <b>하나</b>일 때 써요<br>· <b>am</b> ❌ — 주어가 <b>I</b> 일 때만 써요<br>· <b>be</b> ❌ — 문장에서는 그대로 쓰지 않고 am · is · are 로 바꿔 써요<br>💡 I 앞에 <b>and</b> 가 있으면 are ⭐ (지난번에 헷갈렸던 곳!)"},
+{"src": C3, "q": "빈칸에 알맞은 말을 고르세요.<br><b>Tom and Jane (　　) in the room.</b><br><span style='font-size:.88rem;color:#6B7B7E'>Tom과 Jane은 방에 있어.</span>", "choices": ["are", "is", "am", "be"], "answer": "are", "say": "Tom and Jane are in the room.", "spk": true, "exp": "정답은 <b>are</b><br>Tom <b>and</b> Jane → 두 명 → <b>are</b>.<br>· <b>is</b> ❌ — 주어가 he · she · it 처럼 <b>하나</b>일 때 써요<br>· <b>am</b> ❌ — 주어가 <b>I</b> 일 때만 써요<br>· <b>be</b> ❌ — 문장에서는 그대로 쓰지 않고 am · is · are 로 바꿔 써요<br>💡 사람 두 명 = they → are 😊"},
+{"src": C3, "q": "빈칸에 알맞은 말을 고르세요.<br><b>The pencils (　　) on the desk.</b><br><span style='font-size:.88rem;color:#6B7B7E'>연필들이 책상 위에 있어.</span>", "choices": ["are", "is", "am", "be"], "answer": "are", "say": "The pencils are on the desk.", "spk": true, "exp": "정답은 <b>are</b><br>pencil<b>s</b> → 여러 자루 → <b>are</b>.<br>· <b>is</b> ❌ — 주어가 he · she · it 처럼 <b>하나</b>일 때 써요<br>· <b>am</b> ❌ — 주어가 <b>I</b> 일 때만 써요<br>· <b>be</b> ❌ — 문장에서는 그대로 쓰지 않고 am · is · are 로 바꿔 써요<br>💡 주어 끝의 <b>-s</b> 는 '여럿' 신호 → are 😊"},
+{"src": C3, "q": "빈칸에 알맞은 말을 고르세요.<br><b>My friends (　　) nice.</b><br><span style='font-size:.88rem;color:#6B7B7E'>내 친구들은 착해.</span>", "choices": ["are", "is", "am", "be"], "answer": "are", "say": "My friends are nice.", "spk": true, "exp": "정답은 <b>are</b><br>friend<b>s</b> → 여러 명 → <b>are</b>.<br>· <b>is</b> ❌ — 주어가 he · she · it 처럼 <b>하나</b>일 때 써요<br>· <b>am</b> ❌ — 주어가 <b>I</b> 일 때만 써요<br>· <b>be</b> ❌ — 문장에서는 그대로 쓰지 않고 am · is · are 로 바꿔 써요<br>💡 friends = they → are 😊"},
+{"src": C3, "q": "빈칸에 알맞은 말을 고르세요.<br><b>The dog (　　) cute.</b><br><span style='font-size:.88rem;color:#6B7B7E'>그 개는 귀여워.</span>", "choices": ["is", "am", "are", "be"], "answer": "is", "say": "The dog is cute.", "spk": true, "exp": "정답은 <b>is</b><br>The dog 는 <b>한 마리</b>(-s 없음) → it → <b>is</b>.<br>· <b>am</b> ❌ — 주어가 <b>I</b> 일 때만 써요<br>· <b>are</b> ❌ — 주어가 you · we · they 이거나 <b>둘 이상</b>일 때 써요<br>· <b>be</b> ❌ — 문장에서는 그대로 쓰지 않고 am · is · are 로 바꿔 써요<br>💡 -s 가 <b>없으면</b> 하나 → is! 비교해서 보는 연습이에요 😊"},
+{"src": C3, "q": "<b>바르게 쓴</b> 문장을 고르세요.", "choices": ["My mom and dad are teachers.", "My mom and dad is teachers.", "My mom and dad am teachers.", "My mom and dad are teacher."], "answer": "My mom and dad are teachers.", "say": "My mom and dad are teachers.", "spk": false, "exp": "정답은 <b>My mom and dad are teachers.</b><br>mom <b>and</b> dad → 두 명 → <b>are</b>, 선생님도 두 명이니 teacher<b>s</b>.<br>· <b>My mom and dad is teachers.</b> ❌ — 두 명인데 is 를 썼어요<br>· <b>My mom and dad am teachers.</b> ❌ — am 은 I 하고만 짝이에요<br>· <b>My mom and dad are teacher.</b> ❌ — 두 명이니 teacher 에도 -s 가 필요해요<br>💡 주어가 여럿이면 뒤의 사람 이름도 <b>-s</b> 로 맞춰요 😊"},
+{"src": C3, "q": "<b>This computer is new.</b> 의 주어를 <b>These computers</b> 로 바꾼 문장으로 알맞은 것을 고르세요.", "choices": ["These computers are new.", "These computers is new.", "These computer are new.", "This computers are new."], "answer": "These computers are new.", "say": "These computers are new.", "spk": false, "exp": "정답은 <b>These computers are new.</b><br>주어를 여럿으로 바꾸면 <b>동사도 are</b> 로 바꿔야 해요.<br>· <b>These computers is new.</b> ❌ — 주어만 바꾸고 is 를 그대로 뒀어요<br>· <b>These computer are new.</b> ❌ — these 뒤에는 computer<b>s</b> 처럼 -s 가 필요해요<br>· <b>This computers are new.</b> ❌ — this 는 하나라서 computers 와 짝이 안 맞아요<br>💡 주어가 바뀌면 <b>동사도 같이</b> 바뀌어요 ⭐ (지난번 시험에 나온 유형!)"},
+{"src": C3, "q": "빈칸에 알맞은 말을 고르세요.<br><b>You and I (　　) friends.</b><br><span style='font-size:.88rem;color:#6B7B7E'>너와 나는 친구야.</span>", "choices": ["are", "is", "am", "be"], "answer": "are", "say": "You and I are friends.", "spk": true, "exp": "정답은 <b>are</b><br>You <b>and</b> I → 두 명(= we) → <b>are</b>.<br>· <b>is</b> ❌ — 주어가 he · she · it 처럼 <b>하나</b>일 때 써요<br>· <b>am</b> ❌ — 주어가 <b>I</b> 일 때만 써요<br>· <b>be</b> ❌ — 문장에서는 그대로 쓰지 않고 am · is · are 로 바꿔 써요<br>💡 You and I = <b>we</b> → are 😊"},
+{"src": C3, "q": "빈칸에 들어갈 주어로 알맞은 것을 고르세요.<br><b>(　　) are in the park.</b>", "choices": ["Ben and Amy", "Ben", "My cat", "She"], "answer": "Ben and Amy", "say": "Ben and Amy are in the park.", "spk": true, "exp": "정답은 <b>Ben and Amy</b><br><b>are</b> 앞에는 둘 이상이 와요. Ben <b>and</b> Amy 는 두 명!<br>· <b>Ben</b> ❌ — 한 명이라 is 와 짝이에요 (Ben is in the park.)<br>· <b>My cat</b> ❌ — 한 마리라 is 와 짝이에요<br>· <b>She</b> ❌ — she 는 is 와 짝이에요<br>💡 동사를 보고 주어를 거꾸로 찾는 연습이에요. <b>are</b> → 여럿! 🔍"},
+/* ═══ 4영역 · be동사 뜻 3가지 ═══ */
+{"src": C4, "q": "우리말 뜻으로 알맞은 것을 고르세요.<br><b>The cat is on the bed.</b>", "choices": ["고양이는 침대 위에 있다.", "고양이는 침대이다.", "고양이는 침대를 좋아한다.", "고양이들은 침대 위에 있다."], "answer": "고양이는 침대 위에 있다.", "say": "The cat is on the bed.", "spk": true, "exp": "정답은 <b>고양이는 침대 위에 있다.</b><br>is 뒤에 <b>on the bed</b>(장소)가 왔으니 → '<b>~에 있다</b>'.<br>· <b>고양이는 침대이다.</b> ❌ — 고양이가 침대일 수는 없어요. 뒤가 장소면 '있다'예요<br>· <b>고양이는 침대를 좋아한다.</b> ❌ — '좋아한다'는 like 예요. 문장에 like 가 없어요<br>· <b>고양이들은 침대 위에 있다.</b> ❌ — The cat 은 한 마리예요 (cats 가 아님)<br>💡 be동사 뒤에 <b>장소</b>가 오면 '있다' 😊"},
+{"src": C4, "q": "우리말 뜻으로 알맞은 것을 고르세요.<br><b>I am happy.</b>", "choices": ["나는 행복하다.", "나는 행복이다.", "너는 행복하다.", "나는 행복한 곳에 있다."], "answer": "나는 행복하다.", "say": "I am happy.", "spk": true, "exp": "정답은 <b>나는 행복하다.</b><br>am 뒤에 <b>happy</b>(기분)가 왔으니 → '<b>~(하)다</b>'.<br>· <b>나는 행복이다.</b> ❌ — 기분을 나타낼 때는 '이다'가 아니라 '하다'로 풀어요<br>· <b>너는 행복하다.</b> ❌ — 주어는 I(나)예요. you 가 아니에요<br>· <b>나는 행복한 곳에 있다.</b> ❌ — 뒤에 장소가 없어요<br>💡 뒤에 <b>기분·모습</b>이 오면 '~하다' 😊"},
+{"src": C4, "q": "우리말 뜻으로 알맞은 것을 고르세요.<br><b>He is my brother.</b>", "choices": ["그는 내 남동생이다.", "그는 내 남동생과 있다.", "그녀는 내 남동생이다.", "그는 내 남동생에 있다."], "answer": "그는 내 남동생이다.", "say": "He is my brother.", "spk": true, "exp": "정답은 <b>그는 내 남동생이다.</b><br>is 뒤에 <b>my brother</b>(사람)가 왔으니 → '<b>~이다</b>'.<br>· <b>그는 내 남동생과 있다.</b> ❌ — '~와 함께'라는 with 가 없어요<br>· <b>그녀는 내 남동생이다.</b> ❌ — he 는 '그'(남자)예요. 그녀는 she<br>· <b>그는 내 남동생에 있다.</b> ❌ — 사람 뒤에는 '있다'가 아니라 '이다'로 풀어요<br>💡 뒤에 <b>사람·물건 이름</b>이 오면 '이다' 😊"},
+{"src": C4, "q": "우리말 뜻으로 알맞은 것을 고르세요.<br><b>We are in the library.</b>", "choices": ["우리는 도서관에 있다.", "우리는 도서관이다.", "우리는 도서관에 간다.", "나는 도서관에 있다."], "answer": "우리는 도서관에 있다.", "say": "We are in the library.", "spk": true, "exp": "정답은 <b>우리는 도서관에 있다.</b><br>are 뒤에 <b>in the library</b>(장소) → '<b>~에 있다</b>'.<br>· <b>우리는 도서관이다.</b> ❌ — 뒤가 장소라 '이다'가 아니에요<br>· <b>우리는 도서관에 간다.</b> ❌ — '간다'는 go 예요<br>· <b>나는 도서관에 있다.</b> ❌ — we 는 '우리'예요. '나'는 I<br>💡 in · on · under · at 이 보이면 '있다' 😊"},
+{"src": C4, "q": "우리말 뜻으로 알맞은 것을 고르세요.<br><b>They are hungry.</b>", "choices": ["그들은 배가 고프다.", "그들은 배고픔이다.", "우리는 배가 고프다.", "그들은 배고픈 곳에 있다."], "answer": "그들은 배가 고프다.", "say": "They are hungry.", "spk": true, "exp": "정답은 <b>그들은 배가 고프다.</b><br>are 뒤에 <b>hungry</b>(상태) → '<b>~(하)다</b>' → 배가 고프다.<br>· <b>그들은 배고픔이다.</b> ❌ — 상태는 '이다'로 풀지 않아요<br>· <b>우리는 배가 고프다.</b> ❌ — they 는 '그들'이에요. 우리는 we<br>· <b>그들은 배고픈 곳에 있다.</b> ❌ — 뒤에 장소가 없어요<br>💡 hungry(배고픈) · tall(키 큰) · happy(행복한) 는 상태 말이에요 😊"},
+{"src": C4, "q": "be동사가 '<b>~에 있다</b>'라는 뜻으로 쓰인 문장을 고르세요.", "choices": ["My bag is under the desk.", "My bag is big.", "It is my bag.", "My bag is new."], "answer": "My bag is under the desk.", "say": "My bag is under the desk.", "spk": true, "exp": "정답은 <b>My bag is under the desk.</b><br>is 뒤에 <b>under the desk</b>(책상 아래 — 장소)가 왔어요 → 내 가방은 책상 아래에 <b>있다</b>.<br>· <b>My bag is big.</b> ❌ — big(큰)은 모습 → '크다'<br>· <b>It is my bag.</b> ❌ — my bag(물건 이름) → '내 가방이다'<br>· <b>My bag is new.</b> ❌ — new(새로운)는 모습 → '새것이다/새롭다'<br>💡 장소 말(under · in · on) 찾기가 핵심이에요 🔍"},
+{"src": C4, "q": "be동사가 '<b>~이다</b>'라는 뜻으로 쓰인 문장을 고르세요.", "choices": ["Tom is a singer.", "Tom is at home.", "Tom is sad.", "Tom is in the park."], "answer": "Tom is a singer.", "say": "Tom is a singer.", "spk": true, "exp": "정답은 <b>Tom is a singer.</b><br>is 뒤에 <b>a singer</b>(사람) → Tom 은 가수<b>이다</b>.<br>· <b>Tom is at home.</b> ❌ — at home(집에 — 장소) → '있다'<br>· <b>Tom is sad.</b> ❌ — sad(슬픈 — 기분) → '슬프다'<br>· <b>Tom is in the park.</b> ❌ — in the park(장소) → '있다'<br>💡 a · an 이 붙은 이름이 오면 대부분 '이다' 😊"},
+{"src": C4, "q": "be동사가 '<b>~(하)다</b>'(모습·상태)라는 뜻으로 쓰인 문장을 고르세요.", "choices": ["The flower is pretty.", "The flower is in the vase.", "This is a flower.", "The flower is on the table."], "answer": "The flower is pretty.", "say": "The flower is pretty.", "spk": true, "exp": "정답은 <b>The flower is pretty.</b><br>is 뒤에 <b>pretty</b>(예쁜 — 모습) → 꽃이 예<b>쁘다</b>.<br>· <b>The flower is in the vase.</b> ❌ — in the vase(꽃병 안 — 장소) → '있다'<br>· <b>This is a flower.</b> ❌ — a flower(물건 이름) → '이다'<br>· <b>The flower is on the table.</b> ❌ — on the table(장소) → '있다'<br>💡 pretty · big · happy 같은 <b>모습·기분 말</b>이 오면 '하다' 😊"},
+{"src": C4, "q": "우리말에 맞게 <b>바르게 쓴</b> 문장을 고르세요.<br><span style='font-size:.88rem;color:#6B7B7E'>우리 엄마는 부엌에 있다.</span>", "choices": ["My mom is in the kitchen.", "My mom is a kitchen.", "My mom in the kitchen.", "My mom are in the kitchen."], "answer": "My mom is in the kitchen.", "say": "My mom is in the kitchen.", "spk": false, "exp": "정답은 <b>My mom is in the kitchen.</b><br>'<b>있다</b>' → is + <b>in the kitchen</b>(장소).<br>· <b>My mom is a kitchen.</b> ❌ — 엄마가 부엌<b>이다</b>라는 이상한 뜻이 돼요. in 이 필요해요<br>· <b>My mom in the kitchen.</b> ❌ — be동사(is)가 빠졌어요. '있다'도 be동사가 해요<br>· <b>My mom are in the kitchen.</b> ❌ — My mom 은 한 명이라 is 예요<br>💡 '있다'를 영어로 쓸 때도 <b>be동사 + 장소</b> 😊"},
+{"src": C4, "q": "빈칸에 알맞은 말을 고르세요.<br><b>The books (　　) in the bag.</b><br><span style='font-size:.88rem;color:#6B7B7E'>그 책들은 가방 안에 있다.</span>", "choices": ["are", "is", "am", "be"], "answer": "are", "say": "The books are in the bag.", "spk": true, "exp": "정답은 <b>are</b><br>book<b>s</b>(여러 권) → <b>are</b>. 뒤가 장소라 뜻은 '있다'.<br>· <b>is</b> ❌ — 주어가 he · she · it 처럼 <b>하나</b>일 때 써요<br>· <b>am</b> ❌ — 주어가 <b>I</b> 일 때만 써요<br>· <b>be</b> ❌ — 문장에서는 그대로 쓰지 않고 am · is · are 로 바꿔 써요<br>💡 여럿 → are, 장소 → '있다' 두 가지를 함께 확인 😊"},
+/* ═══ 5영역 · I 와 me ═══ */
+{"src": C5, "q": "빈칸에 알맞은 말을 고르세요.<br><b>(　　) am a student.</b><br><span style='font-size:.88rem;color:#6B7B7E'>나는 학생이야.</span>", "choices": ["I", "Me", "My", "Mine"], "answer": "I", "say": "I am a student.", "spk": true, "exp": "정답은 <b>I</b><br>문장 <b>맨 앞 주인공 자리</b>, '나는' → <b>I</b>.<br>· <b>Me</b> ❌ — '나를'이라서 동사 뒤에 와요<br>· <b>My</b> ❌ — '나의'라서 뒤에 이름이 붙어야 해요 (my bag)<br>· <b>Mine</b> ❌ — '나의 것'이라는 뜻이에요<br>💡 am 앞은 언제나 <b>I</b> 😊"},
+{"src": C5, "q": "빈칸에 알맞은 말을 고르세요.<br><b>Help (　　), please.</b><br><span style='font-size:.88rem;color:#6B7B7E'>나를 도와줘.</span>", "choices": ["me", "I", "my", "mine"], "answer": "me", "say": "Help me, please.", "spk": true, "exp": "정답은 <b>me</b><br>help(돕다) <b>동사 뒤</b>, '나를' → <b>me</b>.<br>· <b>I</b> ❌ — '나는'이라서 문장 맨 앞 자리에 와요<br>· <b>my</b> ❌ — '나의'라서 뒤에 이름이 필요해요<br>· <b>mine</b> ❌ — '나의 것'이라 뜻이 맞지 않아요<br>💡 동사 뒤는 <b>me</b> 😊"},
+{"src": C5, "q": "빈칸에 알맞은 말을 고르세요.<br><b>She likes (　　).</b><br><span style='font-size:.88rem;color:#6B7B7E'>그녀는 나를 좋아해.</span>", "choices": ["me", "I", "my", "we"], "answer": "me", "say": "She likes me.", "spk": true, "exp": "정답은 <b>me</b><br>likes(좋아하다) <b>동사 뒤</b>, '나를' → <b>me</b>.<br>· <b>I</b> ❌ — 주인공 자리에만 와요<br>· <b>my</b> ❌ — '나의'라는 뜻이에요<br>· <b>we</b> ❌ — '우리는'이라는 뜻이에요<br>💡 '~을/를' 이면 <b>me</b> 😊"},
+{"src": C5, "q": "빈칸에 알맞은 말을 고르세요.<br><b>(　　) like pizza.</b><br><span style='font-size:.88rem;color:#6B7B7E'>나는 피자를 좋아해.</span>", "choices": ["I", "Me", "My", "Him"], "answer": "I", "say": "I like pizza.", "spk": true, "exp": "정답은 <b>I</b><br>문장 맨 앞 '<b>나는</b>' → <b>I</b>.<br>· <b>Me</b> ❌ — '나를' — 맨 앞에 오지 않아요<br>· <b>My</b> ❌ — '나의' — 뒤에 이름이 필요해요<br>· <b>Him</b> ❌ — '그를'이라는 뜻이에요<br>💡 '~은/는' 이면 <b>I</b> 😊"},
+{"src": C5, "q": "빈칸에 알맞은 말을 고르세요.<br><b>This is for (　　).</b><br><span style='font-size:.88rem;color:#6B7B7E'>이것은 그를 위한 거야.</span>", "choices": ["him", "he", "his", "she"], "answer": "him", "say": "This is for him.", "spk": true, "exp": "정답은 <b>him</b><br><b>for</b>(~을 위한) 뒤에는 '그를' → <b>him</b>.<br>· <b>he</b> ❌ — '그는' — 주인공 자리에 와요<br>· <b>his</b> ❌ — '그의' — 뒤에 이름이 필요해요<br>· <b>she</b> ❌ — '그녀는'이라는 뜻이에요<br>💡 for · with 뒤에는 <b>me · him · her · us · them</b> 😊"},
+{"src": C5, "q": "빈칸에 알맞은 말을 고르세요.<br><b>(　　) is my friend.</b><br><span style='font-size:.88rem;color:#6B7B7E'>그녀는 내 친구야.</span>", "choices": ["She", "Her", "Hers", "Him"], "answer": "She", "say": "She is my friend.", "spk": true, "exp": "정답은 <b>She</b><br>문장 맨 앞 '<b>그녀는</b>' → <b>She</b>.<br>· <b>Her</b> ❌ — '그녀를/그녀의' — 맨 앞 주인공 자리에 오지 않아요<br>· <b>Hers</b> ❌ — '그녀의 것'이라는 뜻이에요<br>· <b>Him</b> ❌ — '그를'이라는 뜻이에요<br>💡 she ↔ her 짝을 기억해요 😊"},
+{"src": C5, "q": "빈칸에 알맞은 말을 고르세요.<br><b>Come with (　　).</b><br><span style='font-size:.88rem;color:#6B7B7E'>우리와 함께 가자.</span>", "choices": ["us", "we", "our", "they"], "answer": "us", "say": "Come with us.", "spk": true, "exp": "정답은 <b>us</b><br><b>with</b> 뒤 '우리와' → <b>us</b>.<br>· <b>we</b> ❌ — '우리는' — 주인공 자리에 와요<br>· <b>our</b> ❌ — '우리의'라는 뜻이에요<br>· <b>they</b> ❌ — '그들은'이라는 뜻이에요<br>💡 we ↔ us 짝이에요 😊"},
+{"src": C5, "q": "빈칸에 알맞은 말을 고르세요.<br><b>I know (　　).</b><br><span style='font-size:.88rem;color:#6B7B7E'>나는 그들을 알아.</span>", "choices": ["them", "they", "their", "we"], "answer": "them", "say": "I know them.", "spk": true, "exp": "정답은 <b>them</b><br>know(알다) 동사 뒤 '그들을' → <b>them</b>.<br>· <b>they</b> ❌ — '그들은' — 주인공 자리에 와요<br>· <b>their</b> ❌ — '그들의'라는 뜻이에요<br>· <b>we</b> ❌ — '우리는'이라는 뜻이에요<br>💡 they ↔ them 짝이에요 😊"},
+{"src": C5, "q": "<b>바르게 쓴</b> 문장을 고르세요.<br><span style='font-size:.88rem;color:#6B7B7E'>우리 아빠와 나는 키가 커.</span>", "choices": ["My dad and I are tall.", "My dad and me are tall.", "Me and my dad is tall.", "My dad and I is tall."], "answer": "My dad and I are tall.", "say": "My dad and I are tall.", "spk": false, "exp": "정답은 <b>My dad and I are tall.</b><br>주인공 자리에는 <b>I</b>, 두 명이니 <b>are</b>.<br>· <b>My dad and me are tall.</b> ❌ — 주인공 자리에는 me 가 아니라 I 예요<br>· <b>Me and my dad is tall.</b> ❌ — me 도, is 도 맞지 않아요<br>· <b>My dad and I is tall.</b> ❌ — 두 명이라 is 가 아니라 are 예요<br>💡 주어 자리 = <b>I</b>, 두 명 = <b>are</b> 😊"},
+{"src": C5, "q": "빈칸에 알맞은 말을 고르세요.<br><b>Look at (　　).</b><br><span style='font-size:.88rem;color:#6B7B7E'>나를 봐.</span>", "choices": ["me", "I", "my", "mine"], "answer": "me", "say": "Look at me.", "spk": true, "exp": "정답은 <b>me</b><br><b>at</b> 뒤 '나를' → <b>me</b>.<br>· <b>I</b> ❌ — 주인공 자리에만 와요<br>· <b>my</b> ❌ — '나의'라는 뜻이에요<br>· <b>mine</b> ❌ — '나의 것'이라는 뜻이에요<br>💡 at · for · with 뒤도 <b>me</b> 😊"},
+/* ═══ 6영역 · 둘 이상이면 -s ═══ */
+{"src": C6, "q": "우리말에 맞는 것을 고르세요.<br><span style='font-size:.88rem;color:#6B7B7E'>연필 두 자루</span>", "choices": ["two pencils", "two pencil", "a pencils", "two pencilss"], "answer": "two pencils", "say": "two pencils", "spk": false, "exp": "정답은 <b>two pencils</b><br><b>two</b>(둘) → pencil<b>s</b>.<br>· <b>two pencil</b> ❌ — 둘인데 -s 가 빠졌어요<br>· <b>a pencils</b> ❌ — a(하나)와 -s(여럿)가 함께 올 수 없어요<br>· <b>two pencilss</b> ❌ — s 는 한 번만 붙여요<br>💡 숫자가 보이면 -s 체크! ✅"},
+{"src": C6, "q": "빈칸에 알맞은 것을 고르세요.<br><b>three (　　)</b><br><span style='font-size:.88rem;color:#6B7B7E'>친구 세 명</span>", "choices": ["friends", "friend", "friendes", "a friend"], "answer": "friends", "say": "three friends", "spk": false, "exp": "정답은 <b>friends</b><br><b>three</b>(셋) → friend<b>s</b>.<br>· <b>friend</b> ❌ — 셋인데 -s 가 빠졌어요<br>· <b>friendes</b> ❌ — friend 는 -es 가 아니라 -s 만 붙여요<br>· <b>a friend</b> ❌ — a 는 '하나'예요<br>💡 fr-i-e-n-d-s 철자도 함께 확인 ✍️"},
+{"src": C6, "q": "빈칸에 알맞은 것을 고르세요.<br><b>a (　　)</b><br><span style='font-size:.88rem;color:#6B7B7E'>책 한 권</span>", "choices": ["book", "books", "bookes", "bookss"], "answer": "book", "say": "a book", "spk": false, "exp": "정답은 <b>book</b><br><b>a</b>(하나) 뒤에는 -s 가 없어요 → a <b>book</b>.<br>· <b>books</b> ❌ — a 는 하나라서 -s 를 붙이지 않아요<br>· <b>bookes</b> ❌ — -es 도 붙이지 않아요<br>· <b>bookss</b> ❌ — -s 를 붙이지 않아요<br>💡 a · an 뒤는 <b>하나</b> → -s 없음 😊"},
+{"src": C6, "q": "빈칸에 알맞은 것을 고르세요.<br><b>I have two (　　).</b><br><span style='font-size:.88rem;color:#6B7B7E'>나는 고양이 두 마리가 있어.</span>", "choices": ["cats", "cat", "cates", "a cat"], "answer": "cats", "say": "I have two cats.", "spk": false, "exp": "정답은 <b>cats</b><br><b>two</b> → cat<b>s</b>.<br>· <b>cat</b> ❌ — 둘인데 -s 가 빠졌어요<br>· <b>cates</b> ❌ — cat 은 -s 만 붙여요<br>· <b>a cat</b> ❌ — two 와 a 가 함께 올 수 없어요<br>💡 숫자 → -s 😊"},
+{"src": C6, "q": "<b>box</b>(상자)를 여러 개로 바르게 바꾼 것을 고르세요.", "choices": ["boxes", "boxs", "boxies", "box"], "answer": "boxes", "say": "boxes", "spk": false, "exp": "정답은 <b>boxes</b><br>x 로 끝나는 낱말은 <b>-es</b> → box<b>es</b>.<br>· <b>boxs</b> ❌ — x 로 끝나면 -s 가 아니라 -es 예요<br>· <b>boxies</b> ❌ — y 가 없으니 -ies 가 아니에요<br>· <b>box</b> ❌ — 여럿으로 바뀌지 않았어요<br>💡 s · x · ch · sh 로 끝나면 <b>-es</b> (bus → buses) 😊"},
+{"src": C6, "q": "빈칸에 알맞은 것을 고르세요.<br><b>many (　　)</b><br><span style='font-size:.88rem;color:#6B7B7E'>많은 학생들</span>", "choices": ["students", "student", "studentes", "studets"], "answer": "students", "say": "many students", "spk": false, "exp": "정답은 <b>students</b><br><b>many</b>(많은) → student<b>s</b>.<br>· <b>student</b> ❌ — 많은데 -s 가 빠졌어요<br>· <b>studentes</b> ❌ — -es 가 아니라 -s 만 붙여요<br>· <b>studets</b> ❌ — 가운데 <b>n</b> 이 빠졌어요 (stude<b>n</b>ts)<br>💡 many 도 '여럿' 신호예요 😊"},
+{"src": C6, "q": "빈칸에 알맞은 것을 고르세요.<br><b>These are my (　　).</b><br><span style='font-size:.88rem;color:#6B7B7E'>이것들은 내 장난감들이야.</span>", "choices": ["toys", "toy", "toyes", "a toy"], "answer": "toys", "say": "These are my toys.", "spk": false, "exp": "정답은 <b>toys</b><br><b>These are</b> → 여럿 → toy<b>s</b>.<br>· <b>toy</b> ❌ — these 는 여럿이라 -s 가 필요해요<br>· <b>toyes</b> ❌ — toy 는 -s 만 붙여요<br>· <b>a toy</b> ❌ — these 와 a 가 함께 올 수 없어요<br>💡 these · those 뒤도 -s 체크 ✅"},
+{"src": C6, "q": "빈칸에 알맞은 것을 고르세요.<br><b>I see four (　　).</b><br><span style='font-size:.88rem;color:#6B7B7E'>나는 새 네 마리를 봐.</span>", "choices": ["birds", "bird", "birdes", "a bird"], "answer": "birds", "say": "I see four birds.", "spk": false, "exp": "정답은 <b>birds</b><br><b>four</b> → bird<b>s</b>.<br>· <b>bird</b> ❌ — 넷인데 -s 가 빠졌어요<br>· <b>birdes</b> ❌ — bird 는 -s 만 붙여요<br>· <b>a bird</b> ❌ — four 와 a 가 함께 올 수 없어요<br>💡 숫자 → -s 😊"},
+{"src": C6, "q": "빈칸에 알맞은 것을 고르세요.<br><b>Tom has two (　　).</b><br><span style='font-size:.88rem;color:#6B7B7E'>Tom은 개 두 마리가 있어.</span>", "choices": ["dogs", "dog", "doges", "a dog"], "answer": "dogs", "say": "Tom has two dogs.", "spk": false, "exp": "정답은 <b>dogs</b><br><b>two</b> → dog<b>s</b>.<br>· <b>dog</b> ❌ — 둘인데 -s 가 빠졌어요<br>· <b>doges</b> ❌ — dog 는 -s 만 붙여요<br>· <b>a dog</b> ❌ — two 와 a 가 함께 올 수 없어요<br>💡 숫자 → -s 😊"},
+{"src": C6, "q": "빈칸에 알맞은 것을 고르세요.<br><b>The (　　) are on the desk.</b><br><span style='font-size:.88rem;color:#6B7B7E'>책들이 책상 위에 있어.</span>", "choices": ["books", "book", "a book", "bookes"], "answer": "books", "say": "The books are on the desk.", "spk": false, "exp": "정답은 <b>books</b><br><b>are</b> 가 있으니 주어는 여럿 → book<b>s</b>.<br>· <b>book</b> ❌ — are 와 짝이 되려면 여럿이어야 해요<br>· <b>a book</b> ❌ — The 와 a 는 함께 쓰지 않아요<br>· <b>bookes</b> ❌ — -es 가 아니라 -s 예요<br>💡 are 를 보고 -s 를 떠올리는 것도 좋은 방법이에요 🔍"},
+/* ═══ 7영역 · 우리말 → 영어 문장 ═══ */
+{"src": C7, "q": "우리말에 맞게 <b>바르게 쓴</b> 문장을 고르세요.<br><span style='font-size:.88rem;color:#6B7B7E'>나는 학생이다.</span>", "choices": ["I am a student.", "A student am I.", "I a student am.", "Am I a student?"], "answer": "I am a student.", "say": "I am a student.", "spk": false, "exp": "정답은 <b>I am a student.</b><br><b>I</b>(누가) → <b>am</b>(이다) → <b>a student</b>(무엇).<br>· <b>A student am I.</b> ❌ — 주어와 뒷말이 뒤바뀌었어요<br>· <b>I a student am.</b> ❌ — am 이 맨 뒤로 가면 안 돼요. be동사는 주어 바로 뒤!<br>· <b>Am I a student?</b> ❌ — '내가 학생이니?' 라는 질문이 돼요<br>💡 누가 → be동사 → 무엇 순서 🚂"},
+{"src": C7, "q": "우리말에 맞게 <b>바르게 쓴</b> 문장을 고르세요.<br><span style='font-size:.88rem;color:#6B7B7E'>그는 가수이다.</span>", "choices": ["He is a singer.", "A singer is he.", "He a singer is.", "Is he a singer?"], "answer": "He is a singer.", "say": "He is a singer.", "spk": false, "exp": "정답은 <b>He is a singer.</b><br><b>He</b> → <b>is</b> → <b>a singer</b>.<br>· <b>A singer is he.</b> ❌ — 주어(he)가 맨 앞에 와야 해요<br>· <b>He a singer is.</b> ❌ — is 는 주어 바로 뒤에 와요<br>· <b>Is he a singer?</b> ❌ — '그는 가수니?' 라는 질문이 돼요<br>💡 '그는' = 맨 앞 주인공 😊"},
+{"src": C7, "q": "우리말에 맞게 <b>바르게 쓴</b> 문장을 고르세요.<br><span style='font-size:.88rem;color:#6B7B7E'>내 고양이는 작다.</span>", "choices": ["My cat is small.", "Small is my cat.", "My cat small is.", "Is my cat small?"], "answer": "My cat is small.", "say": "My cat is small.", "spk": false, "exp": "정답은 <b>My cat is small.</b><br><b>My cat</b> → <b>is</b> → <b>small</b>.<br>· <b>Small is my cat.</b> ❌ — '작다'가 맨 앞에 오면 안 돼요<br>· <b>My cat small is.</b> ❌ — is 가 맨 뒤로 갔어요<br>· <b>Is my cat small?</b> ❌ — 질문하는 문장이 돼요<br>💡 '~는' 붙은 말(내 고양이는)이 맨 앞 😊"},
+{"src": C7, "q": "우리말에 맞게 <b>바르게 쓴</b> 문장을 고르세요.<br><span style='font-size:.88rem;color:#6B7B7E'>그 책은 책상 위에 있다.</span>", "choices": ["The book is on the desk.", "The desk is on the book.", "The book on is the desk.", "On the desk the book."], "answer": "The book is on the desk.", "say": "The book is on the desk.", "spk": false, "exp": "정답은 <b>The book is on the desk.</b><br>'그 책은' → <b>The book</b> 이 맨 앞, 장소 <b>on the desk</b> 는 뒤.<br>· <b>The desk is on the book.</b> ❌ — 책상이 책 위에 있다는 뜻으로 <b>뒤바뀌었어요</b>. 주어를 꼭 확인!<br>· <b>The book on is the desk.</b> ❌ — on 과 is 의 순서가 틀렸어요<br>· <b>On the desk the book.</b> ❌ — be동사(is)가 빠졌어요<br>💡 주어와 장소를 <b>바꾸면 뜻이 완전히 달라져요</b> ⭐ (서준이가 조심할 곳!)"},
+{"src": C7, "q": "우리말에 맞게 <b>바르게 쓴</b> 문장을 고르세요.<br><span style='font-size:.88rem;color:#6B7B7E'>우리 아빠는 요리사이다.</span>", "choices": ["My dad is a cook.", "My cook is a dad.", "My dad a cook is.", "Is my dad a cook?"], "answer": "My dad is a cook.", "say": "My dad is a cook.", "spk": false, "exp": "정답은 <b>My dad is a cook.</b><br>'우리 아빠는' → <b>My dad</b> 가 주어.<br>· <b>My cook is a dad.</b> ❌ — 아빠와 요리사가 <b>뒤바뀌었어요</b><br>· <b>My dad a cook is.</b> ❌ — is 는 주어 바로 뒤에 와요<br>· <b>Is my dad a cook?</b> ❌ — 질문하는 문장이 돼요<br>💡 우리말에서 '<b>~는</b>'이 붙은 낱말을 먼저 찾아요 🔍"},
+{"src": C7, "q": "빈칸에 들어갈 주어로 알맞은 것을 고르세요.<br><b>(　　) is my brother.</b><br><span style='font-size:.88rem;color:#6B7B7E'>그는 내 형이야.</span>", "choices": ["He", "They", "We", "I"], "answer": "He", "say": "He is my brother.", "spk": true, "exp": "정답은 <b>He</b><br><b>is</b> 앞에는 한 사람 → '<b>그는</b>' He.<br>· <b>They</b> ❌ — they 는 are 와 짝이에요<br>· <b>We</b> ❌ — we 는 are 와 짝이에요<br>· <b>I</b> ❌ — I 는 am 과 짝이에요<br>💡 동사(is)를 보고 주어를 찾아요 🔍"},
+{"src": C7, "q": "빈칸에 들어갈 주어로 알맞은 것을 고르세요.<br><b>(　　) are students.</b><br><span style='font-size:.88rem;color:#6B7B7E'>우리는 학생들이야.</span>", "choices": ["We", "He", "She", "I"], "answer": "We", "say": "We are students.", "spk": true, "exp": "정답은 <b>We</b><br><b>are</b> + student<b>s</b> → 여러 명 → '<b>우리는</b>' We.<br>· <b>He</b> ❌ — he 는 is 와 짝이에요<br>· <b>She</b> ❌ — she 는 is 와 짝이에요<br>· <b>I</b> ❌ — I 는 am 과 짝이에요<br>💡 are 를 보면 you · we · they 😊"},
+{"src": C7, "q": "빈칸에 들어갈 주어로 알맞은 것을 고르세요.<br><b>(　　) am hungry.</b><br><span style='font-size:.88rem;color:#6B7B7E'>나는 배고파.</span>", "choices": ["I", "You", "He", "They"], "answer": "I", "say": "I am hungry.", "spk": true, "exp": "정답은 <b>I</b><br><b>am</b> 앞은 언제나 <b>I</b>.<br>· <b>You</b> ❌ — you 는 are 와 짝이에요<br>· <b>He</b> ❌ — he 는 is 와 짝이에요<br>· <b>They</b> ❌ — they 는 are 와 짝이에요<br>💡 am → I 😊"},
+{"src": C7, "q": "우리말에 맞게 <b>바르게 쓴</b> 문장을 고르세요.<br><span style='font-size:.88rem;color:#6B7B7E'>그 개는 공원에 있다.</span>", "choices": ["The dog is in the park.", "The park is in the dog.", "The dog in the park.", "The dog are in the park."], "answer": "The dog is in the park.", "say": "The dog is in the park.", "spk": false, "exp": "정답은 <b>The dog is in the park.</b><br>'그 개는' → <b>The dog</b> → <b>is</b> → <b>in the park</b>.<br>· <b>The park is in the dog.</b> ❌ — 개와 공원이 <b>뒤바뀌었어요</b><br>· <b>The dog in the park.</b> ❌ — be동사(is)가 빠졌어요<br>· <b>The dog are in the park.</b> ❌ — 한 마리라 are 가 아니라 is 예요<br>💡 주어 → be동사 → 장소 순서 🚂"},
+{"src": C7, "q": "우리말에 맞게 <b>바르게 쓴</b> 문장을 고르세요.<br><span style='font-size:.88rem;color:#6B7B7E'>내 친구들은 교실에 있다.</span>", "choices": ["My friends are in the classroom.", "The classroom is in my friends.", "My friends is in the classroom.", "My friend are in the classroom."], "answer": "My friends are in the classroom.", "say": "My friends are in the classroom.", "spk": false, "exp": "정답은 <b>My friends are in the classroom.</b><br>'내 친구들은' → <b>My friends</b>(여럿) → <b>are</b> → 장소.<br>· <b>The classroom is in my friends.</b> ❌ — 친구들과 교실이 <b>뒤바뀌었어요</b><br>· <b>My friends is in the classroom.</b> ❌ — friends 는 여럿이라 are 예요<br>· <b>My friend are in the classroom.</b> ❌ — '친구들'이니 friend<b>s</b> 여야 해요<br>💡 주어 순서 + are + -s, 세 가지 모두 체크 ✅"},
+/* ═══ 8영역 · 철자 챙기기 ═══ */
+{"src": C8, "q": "'<b>학생들</b>'을(를) 뜻하는 낱말의 철자가 바른 것을 고르세요.", "choices": ["students", "studets", "stuents", "studens"], "answer": "students", "say": "students", "spk": false, "exp": "정답은 <b>students</b><br>stu - de<b>n</b> - ts 🔊 '스튜던츠'<br>· <b>studets</b> ❌ — 가운데 <b>n</b> 이 빠졌어요 (지난번에 놓쳤던 곳!)<br>· <b>stuents</b> ❌ — <b>d</b> 가 빠졌어요<br>· <b>studens</b> ❌ — 끝의 <b>t</b> 가 빠졌어요<br>💡 쓰고 나서 한 글자씩 소리 내어 읽어 보기 🔊"},
+{"src": C8, "q": "'<b>가수</b>'을(를) 뜻하는 낱말의 철자가 바른 것을 고르세요.", "choices": ["singer", "siger", "sinnger", "singr"], "answer": "singer", "say": "singer", "spk": false, "exp": "정답은 <b>singer</b><br>si<b>n</b> - ger 🔊 '싱어'<br>· <b>siger</b> ❌ — 가운데 <b>n</b> 이 빠졌어요 (지난번에 놓쳤던 곳!)<br>· <b>sinnger</b> ❌ — n 은 <b>하나</b>예요<br>· <b>singr</b> ❌ — 끝의 <b>e</b> 가 빠졌어요<br>💡 쓰고 나서 한 글자씩 소리 내어 읽어 보기 🔊"},
+{"src": C8, "q": "'<b>10, 열</b>'을(를) 뜻하는 낱말의 철자가 바른 것을 고르세요.", "choices": ["ten", "teh", "tan", "tne"], "answer": "ten", "say": "ten", "spk": false, "exp": "정답은 <b>ten</b><br>t - e - <b>n</b> 🔊 '텐'<br>· <b>teh</b> ❌ — 끝 글자는 h 가 아니라 <b>n</b> 이에요<br>· <b>tan</b> ❌ — 가운데는 a 가 아니라 <b>e</b> 예요<br>· <b>tne</b> ❌ — e 와 n 의 순서가 바뀌었어요<br>💡 쓰고 나서 한 글자씩 소리 내어 읽어 보기 🔊"},
+{"src": C8, "q": "'<b>행복한</b>'을(를) 뜻하는 낱말의 철자가 바른 것을 고르세요.", "choices": ["happy", "hapy", "happpy", "happi"], "answer": "happy", "say": "happy", "spk": false, "exp": "정답은 <b>happy</b><br>ha - <b>pp</b> - y, p 가 <b>두 개</b>!<br>· <b>hapy</b> ❌ — p 가 하나뿐이에요<br>· <b>happpy</b> ❌ — p 는 두 개예요 (세 개 아님)<br>· <b>happi</b> ❌ — 끝은 <b>y</b> 예요<br>💡 쓰고 나서 한 글자씩 소리 내어 읽어 보기 🔊"},
+{"src": C8, "q": "'<b>친구들</b>'을(를) 뜻하는 낱말의 철자가 바른 것을 고르세요.", "choices": ["friends", "freinds", "frieds", "frends"], "answer": "friends", "say": "friends", "spk": false, "exp": "정답은 <b>friends</b><br>fr - <b>ie</b> - <b>n</b> - ds<br>· <b>freinds</b> ❌ — i 와 e 의 순서가 바뀌었어요 (<b>i 먼저</b>)<br>· <b>frieds</b> ❌ — <b>n</b> 이 빠졌어요<br>· <b>frends</b> ❌ — <b>i</b> 가 빠졌어요<br>💡 쓰고 나서 한 글자씩 소리 내어 읽어 보기 🔊"},
+{"src": C8, "q": "'<b>도서관</b>'을(를) 뜻하는 낱말의 철자가 바른 것을 고르세요.", "choices": ["library", "libary", "librery", "lybrary"], "answer": "library", "say": "library", "spk": false, "exp": "정답은 <b>library</b><br>li - <b>br</b> - a - ry 🔊 '라이브러리'<br>· <b>libary</b> ❌ — 가운데 <b>r</b> 이 빠졌어요<br>· <b>librery</b> ❌ — a 자리에 e 를 썼어요<br>· <b>lybrary</b> ❌ — 첫 모음은 <b>i</b> 예요<br>💡 쓰고 나서 한 글자씩 소리 내어 읽어 보기 🔊"},
+{"src": C8, "q": "'<b>창문</b>'을(를) 뜻하는 낱말의 철자가 바른 것을 고르세요.", "choices": ["window", "wimdow", "windo", "windaw"], "answer": "window", "say": "window", "spk": false, "exp": "정답은 <b>window</b><br>wi<b>n</b> - dow 🔊 '윈도우'<br>· <b>wimdow</b> ❌ — m 이 아니라 <b>n</b> 이에요<br>· <b>windo</b> ❌ — 끝의 <b>w</b> 가 빠졌어요<br>· <b>windaw</b> ❌ — 끝은 <b>ow</b> 예요<br>💡 쓰고 나서 한 글자씩 소리 내어 읽어 보기 🔊"},
+{"src": C8, "q": "'<b>손</b>'을(를) 뜻하는 낱말의 철자가 바른 것을 고르세요.", "choices": ["hand", "hend", "hnad", "hanb"], "answer": "hand", "say": "hand", "spk": false, "exp": "정답은 <b>hand</b><br>h - a - <b>n</b> - d 🔊 '핸드'<br>· <b>hend</b> ❌ — 가운데는 <b>a</b> 예요<br>· <b>hnad</b> ❌ — a 와 n 의 순서가 바뀌었어요<br>· <b>hanb</b> ❌ — 끝 글자는 b 가 아니라 <b>d</b> 예요<br>💡 쓰고 나서 한 글자씩 소리 내어 읽어 보기 🔊"},
+{"src": C8, "q": "'<b>원하다</b>'을(를) 뜻하는 낱말의 철자가 바른 것을 고르세요.", "choices": ["want", "wamt", "wnat", "wantt"], "answer": "want", "say": "want", "spk": false, "exp": "정답은 <b>want</b><br>wa - <b>n</b> - t 🔊 '원트'<br>· <b>wamt</b> ❌ — m 이 아니라 <b>n</b> 이에요<br>· <b>wnat</b> ❌ — a 와 n 의 순서가 바뀌었어요<br>· <b>wantt</b> ❌ — t 는 하나예요<br>💡 쓰고 나서 한 글자씩 소리 내어 읽어 보기 🔊"},
+{"src": C8, "q": "'<b>연필</b>'을(를) 뜻하는 낱말의 철자가 바른 것을 고르세요.", "choices": ["pencil", "pecil", "pensil", "pencle"], "answer": "pencil", "say": "pencil", "spk": false, "exp": "정답은 <b>pencil</b><br>pe<b>n</b> - cil 🔊 '펜슬'<br>· <b>pecil</b> ❌ — <b>n</b> 이 빠졌어요<br>· <b>pensil</b> ❌ — s 가 아니라 <b>c</b> 예요<br>· <b>pencle</b> ❌ — 끝은 <b>-cil</b> 이에요<br>💡 쓰고 나서 한 글자씩 소리 내어 읽어 보기 🔊"},
+/* ═══ 9영역 · 길 안내 · 위치 말 ═══ */
+{"src": C9, "q": "<b>turn right</b> 의 뜻으로 알맞은 것을 고르세요.", "choices": ["오른쪽으로 돌다", "왼쪽으로 돌다", "곧장 가다", "길을 건너다"], "answer": "오른쪽으로 돌다", "say": "turn right", "spk": true, "exp": "정답은 <b>오른쪽으로 돌다</b><br><b>turn</b>(돌다) + <b>right</b>(오른쪽) ↱<br>· <b>왼쪽으로 돌다</b> ❌ — turn left<br>· <b>곧장 가다</b> ❌ — go straight<br>· <b>길을 건너다</b> ❌ — cross<br>💡 오른손을 들며 right! 🖐️"},
+{"src": C9, "q": "우리말 뜻으로 알맞은 것을 고르세요.<br><b>Go straight and turn left.</b>", "choices": ["곧장 가다가 왼쪽으로 도세요.", "곧장 가다가 오른쪽으로 도세요.", "왼쪽으로 돌아서 길을 건너세요.", "오른쪽으로 곧장 가세요."], "answer": "곧장 가다가 왼쪽으로 도세요.", "say": "Go straight and turn left.", "spk": true, "exp": "정답은 <b>곧장 가다가 왼쪽으로 도세요.</b><br>go straight(곧장 가다) + turn left(왼쪽으로 돌다).<br>· <b>곧장 가다가 오른쪽으로 도세요.</b> ❌ — left 는 왼쪽이에요<br>· <b>왼쪽으로 돌아서 길을 건너세요.</b> ❌ — cross(건너다)가 문장에 없어요<br>· <b>오른쪽으로 곧장 가세요.</b> ❌ — right 가 문장에 없어요<br>💡 문장 끝까지 해석을 마무리해요 😊"},
+{"src": C9, "q": "'<b>건너다</b>'를 뜻하는 낱말의 철자가 바른 것을 고르세요.", "choices": ["cross", "cros", "corss", "kross"], "answer": "cross", "say": "cross", "spk": false, "exp": "정답은 <b>cross</b><br>c - r - o - <b>ss</b>, s 가 두 개!<br>· <b>cros</b> ❌ — s 가 하나뿐이에요<br>· <b>corss</b> ❌ — r 과 o 의 순서가 바뀌었어요<br>· <b>kross</b> ❌ — 첫 글자는 <b>c</b> 예요<br>💡 across(맞은편에) 안에도 cross 가 숨어 있어요 🔍"},
+{"src": C9, "q": "<b>corner</b> 의 뜻으로 알맞은 것을 고르세요.", "choices": ["모퉁이", "구역, 블록", "맨 아래", "가운데"], "answer": "모퉁이", "say": "corner", "spk": true, "exp": "정답은 <b>모퉁이</b><br>길이 꺾이는 곳, <b>모퉁이</b>예요.<br>· <b>구역, 블록</b> ❌ — block<br>· <b>맨 아래</b> ❌ — bottom<br>· <b>가운데</b> ❌ — middle<br>💡 cor + ner 두 덩어리 😊"},
+{"src": C9, "q": "<b>across from</b> 의 뜻으로 알맞은 것을 고르세요.", "choices": ["~ 맞은편에", "~ 옆에", "~ 위에", "~에서 멀리"], "answer": "~ 맞은편에", "say": "across from", "spk": true, "exp": "정답은 <b>~ 맞은편에</b><br>길을 건넌(cross) 쪽, <b>맞은편</b>이에요.<br>· <b>~ 옆에</b> ❌ — beside<br>· <b>~ 위에</b> ❌ — above<br>· <b>~에서 멀리</b> ❌ — far from<br>💡 across 안의 cross 를 떠올려요 🔍"},
+{"src": C9, "q": "빈칸에 알맞은 말을 고르세요.<br><b>The bank is (　　) the park.</b><br><span style='font-size:.88rem;color:#6B7B7E'>은행은 공원 맞은편에 있어요.</span>", "choices": ["across from", "beside", "above", "far from"], "answer": "across from", "say": "The bank is across from the park.", "spk": true, "exp": "정답은 <b>across from</b><br>'맞은편에' → <b>across from</b>.<br>· <b>beside</b> ❌ — '옆에'라는 뜻이에요<br>· <b>above</b> ❌ — '위에'라는 뜻이에요<br>· <b>far from</b> ❌ — '멀리'라는 뜻이에요<br>💡 우리말 뜻을 먼저 읽고 골라요 👀"},
+{"src": C9, "q": "빈칸에 알맞은 말을 고르세요.<br><b>The bird is (　　) the box.</b><br><span style='font-size:.88rem;color:#6B7B7E'>새가 상자 위에 있어요.</span>", "choices": ["above", "below", "beside", "around"], "answer": "above", "say": "The bird is above the box.", "spk": true, "exp": "정답은 <b>above</b><br>'위에' → <b>above</b> ⬆️<br>· <b>below</b> ❌ — '아래에' — 반대말이에요<br>· <b>beside</b> ❌ — '옆에'라는 뜻이에요<br>· <b>around</b> ❌ — '주위에'라는 뜻이에요<br>💡 above ↔ below 짝꿍 😊"},
+{"src": C9, "q": "빈칸에 알맞은 말을 고르세요.<br><b>The cat is (　　) the chair.</b><br><span style='font-size:.88rem;color:#6B7B7E'>고양이가 의자 옆에 있어요.</span>", "choices": ["beside", "above", "below", "far from"], "answer": "beside", "say": "The cat is beside the chair.", "spk": true, "exp": "정답은 <b>beside</b><br>'옆에' → <b>beside</b> (be + side).<br>· <b>above</b> ❌ — '위에'라는 뜻이에요<br>· <b>below</b> ❌ — '아래에'라는 뜻이에요<br>· <b>far from</b> ❌ — '멀리'라는 뜻이에요<br>💡 beside 안의 side(옆) 😊"},
+{"src": C9, "q": "<b>near</b>(가까이에)와 뜻이 비슷한 것을 고르세요.", "choices": ["close to", "far from", "below", "top"], "answer": "close to", "say": "close to", "spk": true, "exp": "정답은 <b>close to</b><br><b>close to</b> 도 '가까이에'예요.<br>· <b>far from</b> ❌ — '멀리' — 반대말이에요<br>· <b>below</b> ❌ — '아래에'라는 뜻이에요<br>· <b>top</b> ❌ — '맨 위'라는 뜻이에요<br>💡 near = close to ↔ far from 😊"},
+{"src": C9, "q": "<b>bottom</b>(맨 아래)의 반대말을 고르세요.", "choices": ["top", "middle", "corner", "block"], "answer": "top", "say": "top", "spk": true, "exp": "정답은 <b>top</b><br>맨 아래 ↔ 맨 위 = <b>top</b>.<br>· <b>middle</b> ❌ — '가운데'라는 뜻이에요<br>· <b>corner</b> ❌ — '모퉁이'라는 뜻이에요<br>· <b>block</b> ❌ — '구역'이라는 뜻이에요<br>💡 top → middle → bottom 순서 ⬆️⬇️"},
+/* ═══ 10영역 · 교통수단 & by · take ═══ */
+{"src": C10, "q": "'<b>택시</b>'를 뜻하는 낱말을 고르세요.", "choices": ["taxi", "truck", "train", "ship"], "answer": "taxi", "say": "taxi", "spk": true, "exp": "정답은 <b>taxi</b><br>택시 🚕 = <b>taxi</b><br>· <b>truck</b> ❌ — 트럭 🚚<br>· <b>train</b> ❌ — 기차 🚂<br>· <b>ship</b> ❌ — 배 🚢<br>💡 t 로 시작하는 세 낱말, 두 번째 글자까지 확인! 👀"},
+{"src": C10, "q": "<b>airplane</b> 의 뜻으로 알맞은 것을 고르세요.", "choices": ["비행기", "헬리콥터", "지하철", "배"], "answer": "비행기", "say": "airplane", "spk": true, "exp": "정답은 <b>비행기</b><br>air(공기) + plane → <b>비행기</b> ✈️<br>· <b>헬리콥터</b> ❌ — helicopter<br>· <b>지하철</b> ❌ — subway<br>· <b>배</b> ❌ — ship<br>💡 air + plane 으로 끊어 외워요 😊"},
+{"src": C10, "q": "'<b>트럭</b>'을 뜻하는 낱말의 철자가 바른 것을 고르세요.", "choices": ["truck", "trak", "truk", "trukc"], "answer": "truck", "say": "truck", "spk": false, "exp": "정답은 <b>truck</b><br>t - r - u - <b>ck</b><br>· <b>trak</b> ❌ — 가운데는 <b>u</b>, 끝은 <b>ck</b> 예요<br>· <b>truk</b> ❌ — c 가 빠졌어요 (ck)<br>· <b>trukc</b> ❌ — c 와 k 의 순서가 바뀌었어요<br>💡 끝소리 '크'는 <b>ck</b> 로 써요 (truck, block) ✍️"},
+{"src": C10, "q": "버스에 <b>올라탈 때</b> 쓰는 표현을 고르세요.", "choices": ["get on", "get off", "turn left", "go straight"], "answer": "get on", "say": "get on", "spk": true, "exp": "정답은 <b>get on</b><br>on(위에) → <b>올라타다</b> 🚌⬆️<br>· <b>get off</b> ❌ — '내리다' — 반대예요<br>· <b>turn left</b> ❌ — '왼쪽으로 돌다'예요<br>· <b>go straight</b> ❌ — '곧장 가다'예요<br>💡 on ↔ off 😊"},
+{"src": C10, "q": "빈칸에 알맞은 말을 고르세요.<br><b>I go to school (　　) bus.</b><br><span style='font-size:.88rem;color:#6B7B7E'>나는 버스로 학교에 가.</span>", "choices": ["by", "take", "a", "turn"], "answer": "by", "say": "I go to school by bus.", "spk": true, "exp": "정답은 <b>by</b><br>'~로' 교통수단 → <b>by</b> bus.<br>· <b>take</b> ❌ — take 는 '타다'라서 go 와 함께 쓰면 어색해요<br>· <b>a</b> ❌ — bus 앞에 a 만 있으면 '~로'라는 뜻이 없어요<br>· <b>turn</b> ❌ — '돌다'라는 뜻이에요<br>💡 <b>by</b> + 교통수단, a 없이! 😊"},
+{"src": C10, "q": "빈칸에 알맞은 말을 고르세요.<br><b>I (　　) the subway.</b><br><span style='font-size:.88rem;color:#6B7B7E'>나는 지하철을 타.</span>", "choices": ["take", "by", "turn", "cross"], "answer": "take", "say": "I take the subway.", "spk": true, "exp": "정답은 <b>take</b><br>'타다' → <b>take</b>.<br>· <b>by</b> ❌ — by 는 동사가 아니라 '~로'예요<br>· <b>turn</b> ❌ — '돌다'라는 뜻이에요<br>· <b>cross</b> ❌ — '건너다'라는 뜻이에요<br>💡 take + a/the + 교통수단 😊"},
+{"src": C10, "q": "<b>바르게 쓴</b> 문장을 고르세요.<br><span style='font-size:.88rem;color:#6B7B7E'>나는 기차로 거기에 가.</span>", "choices": ["I go there by train.", "I go there by a train.", "I go there take train.", "I go there train by."], "answer": "I go there by train.", "say": "I go there by train.", "spk": false, "exp": "정답은 <b>I go there by train.</b><br><b>by</b> + train, a 없이!<br>· <b>I go there by a train.</b> ❌ — by 뒤에는 a 를 붙이지 않아요<br>· <b>I go there take train.</b> ❌ — '~로'는 take 가 아니라 by 예요<br>· <b>I go there train by.</b> ❌ — by 는 교통수단 <b>앞</b>에 와요<br>💡 by bus · by train · by subway 😊"},
+{"src": C10, "q": "<b>교통수단이 아닌</b> 것을 고르세요.", "choices": ["corner", "bus", "ship", "subway"], "answer": "corner", "say": "corner", "spk": true, "exp": "정답은 <b>corner</b><br><b>corner</b> 는 '모퉁이'예요. 탈 수 없어요!<br>· <b>bus</b> ❌ — 버스 🚌 — 교통수단<br>· <b>ship</b> ❌ — 배 🚢 — 교통수단<br>· <b>subway</b> ❌ — 지하철 🚇 — 교통수단<br>💡 낱말 뜻을 하나씩 떠올려 봐요 😊"},
+{"src": C10, "q": "<b>subway</b> 의 뜻으로 알맞은 것을 고르세요.", "choices": ["지하철", "기차", "버스", "택시"], "answer": "지하철", "say": "subway", "spk": true, "exp": "정답은 <b>지하철</b><br>sub(아래) + way(길) → 땅 아래 길 = <b>지하철</b> 🚇<br>· <b>기차</b> ❌ — train<br>· <b>버스</b> ❌ — bus<br>· <b>택시</b> ❌ — taxi<br>💡 두 덩어리로 쪼개면 뜻이 보여요 🔍"},
+{"src": C10, "q": "버스에서 <b>내릴 때</b> 쓰는 표현을 고르세요.", "choices": ["get off", "get on", "take a bus", "turn right"], "answer": "get off", "say": "get off", "spk": true, "exp": "정답은 <b>get off</b><br>off(떨어져) → <b>내리다</b> 🚌⬇️<br>· <b>get on</b> ❌ — '올라타다' — 반대예요<br>· <b>take a bus</b> ❌ — '버스를 타다'예요<br>· <b>turn right</b> ❌ — '오른쪽으로 돌다'예요<br>💡 여행 가서 버스 탈 때 꼭 써 봐요! 🧳"},
+];
+
+var SECTIONS = [
+  { name: "1영역 · this · that · these · those", start: 0, end: 10, cards: [C1] },
+  { name: "2영역 · be동사 am · is · are", start: 10, end: 20, cards: [C2] },
+  { name: "3영역 · 둘 이상이면 are", start: 20, end: 30, cards: [C3] },
+  { name: "4영역 · be동사 뜻 3가지", start: 30, end: 40, cards: [C4] },
+  { name: "5영역 · I 와 me", start: 40, end: 50, cards: [C5] },
+  { name: "6영역 · 둘 이상이면 -s", start: 50, end: 60, cards: [C6] },
+  { name: "7영역 · 우리말 → 영어 문장", start: 60, end: 70, cards: [C7] },
+  { name: "8영역 · 철자 챙기기", start: 70, end: 80, cards: [C8] },
+  { name: "9영역 · 길 안내 · 위치 말", start: 80, end: 90, cards: [C9] },
+  { name: "10영역 · 교통수단 & by · take", start: 90, end: 100, cards: [C10] }
+];
+var NSEC = SECTIONS.length;
+function secIndex(i) {
+  for (var s = 0; s < NSEC; s++) { if (i < SECTIONS[s].end) return s; }
+  return NSEC - 1;
+}
+
+/* ══════ 카드가 나오는 문항 위치 ══════ */
+var CARD_AT = { 0: C1, 10: C2, 20: C3, 30: C4, 40: C5, 50: C6, 60: C7, 70: C8, 80: C9, 90: C10 };
+
+/* ══════ 정답 위치 균등 분산 셔플 (영역별로 따로 분산) ══════ */
+function shuffleArr(arr) {
+  var a = arr.slice();
+  for (var i = a.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var t = a[i]; a[i] = a[j]; a[j] = t;
+  }
+  return a;
+}
+function balancedAssign(n, k) {
+  var pool = [];
+  var base = Math.floor(n / k);
+  for (var p = 0; p < k; p++) { for (var c = 0; c < base; c++) pool.push(p); }
+  var remainder = n - pool.length;
+  var extraPositions = shuffleArr([0, 1, 2, 3]).slice(0, remainder);
+  extraPositions.forEach(function (p) { pool.push(p); });
+  return shuffleArr(pool);
+}
+function hasRunOf3(arr) {
+  for (var i = 2; i < arr.length; i++) {
+    if (arr[i] === arr[i - 1] && arr[i - 1] === arr[i - 2]) return true;
+  }
+  return false;
+}
+(function prepareShuffledChoices() {
+  SECTIONS.forEach(function (sec) {
+    var mcqIdx = [];
+    for (var idx = sec.start; idx < sec.end; idx++) { mcqIdx.push(idx); }
+    var targetPositions = balancedAssign(mcqIdx.length, 4);
+    for (var guard = 0; guard < 200 && hasRunOf3(targetPositions); guard++) {
+      targetPositions = balancedAssign(mcqIdx.length, 4);
+    }
+    mcqIdx.forEach(function (idx, mi) {
+      var q = ALL[idx];
+      var shuffled = shuffleArr(q.choices);
+      var curPos = shuffled.indexOf(q.answer);
+      var target = targetPositions[mi];
+      var tmp = shuffled[target]; shuffled[target] = shuffled[curPos]; shuffled[curPos] = tmp;
+      q.shuffled = shuffled;
+    });
+  });
+})();
+
+/* ══════ 진행 상태 ══════ */
+var studentName = "";
+var current = 0;
+var answersLog = new Array(ALL.length).fill(null);
+var elapsed = new Array(NSEC).fill(0);
+var sent = new Array(NSEC).fill(false);
+var lastTick = 0;
+var curSec = 0;
+var cardsShown = {};
+var pendingCard = 0;
+
+/* ══════ 진행 자동 저장 ══════ */
+var SAVE_KEY = "clinic-osj-0916-review";
+function saveState() {
+  try {
+    localStorage.setItem(SAVE_KEY, JSON.stringify({
+      v: 1, name: studentName, current: current, log: answersLog, elapsed: elapsed, sent: sent,
+      cards: cardsShown,
+      choices: ALL.map(function (q) { return q.shuffled || null; })
+    }));
+  } catch (e) {}
+}
+function loadState() {
+  try {
+    var s = JSON.parse(localStorage.getItem(SAVE_KEY));
+    return (s && s.v === 1 && s.name && s.log) ? s : null;
+  } catch (e) { return null; }
+}
+function clearState() { try { localStorage.removeItem(SAVE_KEY); } catch (e) {} }
+
+function show(id) {
+  var wasHidden = document.getElementById(id).classList.contains("hidden");
+  ["start-card", "resume-card", "cards-card", "quiz-card", "sec-result-card"].forEach(function (c) {
+    document.getElementById(c).classList.toggle("hidden", c !== id);
+  });
+  if (id === "start-card") refreshSectionButtons();
+  if (wasHidden) window.scrollTo(0, 0);
+}
+
+/* ══════ 영역 완료 여부 ══════ */
+function secDone(si) {
+  var s = SECTIONS[si];
+  for (var i = s.start; i < s.end; i++) { if (!answersLog[i]) return false; }
+  return true;
+}
+function firstUndoneSec() {
+  for (var i = 0; i < NSEC; i++) { if (!secDone(i)) return i; }
+  return -1;
+}
+function refreshSectionButtons() {
+  var doneList = [];
+  for (var si = 0; si < NSEC; si++) {
+    var btn = document.getElementById("start-s" + (si + 1));
+    if (!btn) continue;
+    var done = secDone(si);
+    btn.classList.toggle("done", done);
+    if (done) doneList.push(si + 1);
+  }
+  var note = document.getElementById("sec-done-note");
+  if (note) {
+    note.textContent = doneList.length
+      ? "✓ " + doneList.join("영역, ") + "영역은 이미 다 풀었어요 (다시 눌러 복습할 수 있어요)"
+      : "";
+  }
+}
+
+/* ══════ 카드 → 문제 5개 순서로 진행 ══════ */
+function step() {
+  var si = secIndex(current);
+  curSec = si;
+  if (CARD_AT[current] && !cardsShown[current]) { showCardScreen(current); }
+  else { show("quiz-card"); showQuestion(); }
+}
+function showCardScreen(i) {
+  pendingCard = i;
+  var sec = SECTIONS[curSec];
+  var title = CARD_AT[i];
+  var pos = sec.cards.indexOf(title) + 1;
+  document.getElementById("card-num").textContent = "개념 카드 " + pos + " / " + sec.cards.length;
+  document.getElementById("card-sec").textContent = sec.name.split(" · ")[0];
+  document.getElementById("card-bar").style.width = (pos / sec.cards.length * 100) + "%";
+  document.getElementById("cardbox").innerHTML = "<h2>" + title + "</h2>" + (TIPS[title] || "");
+  var wr = document.getElementById("wordrow");
+  wr.innerHTML = "";
+  var ws = WORDS[title] || [];
+  document.getElementById("word-hint").classList.toggle("hidden", !(speechOK && ws.length));
+  if (speechOK) {
+    ws.forEach(function (w) {
+      var chip = document.createElement("button");
+      chip.type = "button";
+      chip.className = "wordchip";
+      chip.textContent = "🔊 " + w;
+      chip.addEventListener("click", function () { speak(w); });
+      wr.appendChild(chip);
+    });
+  }
+  show("cards-card");
+}
+document.getElementById("card-next").addEventListener("click", function () {
+  cardsShown[pendingCard] = true;
+  saveState();
+  show("quiz-card");
+  showQuestion();
+});
+document.getElementById("card-skip").addEventListener("click", function () {
+  cardsShown[pendingCard] = true;
+  saveState();
+  show("quiz-card");
+  showQuestion();
+});
+
+/* ══════ 시작 (영역 선택) / 이어하기 ══════ */
+var nameInput = document.getElementById("name-input");
+var secBtns = [].slice.call(document.querySelectorAll(".sec-start"));
+function syncNameGate() {
+  var ok = nameInput.value.trim().length > 0;
+  secBtns.forEach(function (b) { b.disabled = !ok; });
+}
+nameInput.addEventListener("input", syncNameGate);
+nameInput.addEventListener("keydown", function (e) {
+  if (e.key === "Enter" && nameInput.value.trim()) secBtns[0].click();
+});
+
+function startSection(si) {
+  var typed = nameInput.value.trim();
+  if (!typed) { nameInput.focus(); return; }
+  ensureCtx();
+  studentName = typed;
+  var s = SECTIONS[si];
+  for (var i = s.start; i < s.end; i++) { answersLog[i] = null; }
+  elapsed[si] = 0;
+  sent[si] = false;
+  s.cards.forEach(function (title) {
+    Object.keys(CARD_AT).forEach(function (k) { if (CARD_AT[k] === title) delete cardsShown[k]; });
+  });
+  current = s.start;
+  curSec = si;
+  lastTick = Date.now();
+  saveState();
+  step();
+}
+secBtns.forEach(function (b) {
+  b.addEventListener("click", function () { startSection(parseInt(b.getAttribute("data-sec"), 10)); });
+});
+
+var savedState = loadState();
+function applySaved(s) {
+  studentName = s.name;
+  current = s.current;
+  answersLog = (s.log || []).slice(0, ALL.length);
+  while (answersLog.length < ALL.length) answersLog.push(null);
+  elapsed = s.elapsed || new Array(NSEC).fill(0);
+  while (elapsed.length < NSEC) elapsed.push(0);
+  sent = s.sent || new Array(NSEC).fill(false);
+  while (sent.length < NSEC) sent.push(false);
+  cardsShown = s.cards || {};
+  if (s.choices) {
+    ALL.forEach(function (q, i) { if (s.choices[i]) q.shuffled = s.choices[i]; });
+  }
+}
+if (savedState && savedState.log && savedState.log.some(function (l) { return !!l; })) {
+  var doneCnt = savedState.log.filter(function (l) { return !!l; }).length;
+  document.getElementById("resume-info").textContent =
+    savedState.name + " · " + doneCnt + "문제까지 푼 기록이 있어요. 이어서 풀까요?";
+  show("resume-card");
+} else {
+  syncNameGate();
+}
+document.getElementById("resume-btn").addEventListener("click", function () {
+  ensureCtx();
+  applySaved(savedState);
+  nameInput.value = studentName;
+  lastTick = Date.now();
+  curSec = secIndex(Math.min(current, ALL.length - 1));
+  var prevSec = current > 0 ? secIndex(current - 1) : -1;
+  if (prevSec >= 0 && current === SECTIONS[prevSec].end) {
+    showSectionResult(prevSec);
+  } else {
+    step();
+  }
+});
+document.getElementById("restart-btn").addEventListener("click", function () {
+  clearState();
+  answersLog = new Array(ALL.length).fill(null);
+  elapsed = new Array(NSEC).fill(0); sent = new Array(NSEC).fill(false); cardsShown = {}; current = 0;
+  nameInput.value = "";
+  syncNameGate();
+  show("start-card");
+});
+document.getElementById("pick-sec-btn").addEventListener("click", function () {
+  nameInput.value = studentName;
+  syncNameGate();
+  show("start-card");
+});
+
+/* ══════ 문제 표시 ══════ */
+var CIRCLED = ["①", "②", "③", "④"];
+function showQuestion() {
+  var q = ALL[current];
+  var si = secIndex(current);
+  curSec = si;
+  var sec = SECTIONS[si];
+  document.getElementById("prog-num").textContent =
+    sec.name.split(" · ")[0] + "  ·  " + (current - sec.start + 1) + " / " + (sec.end - sec.start);
+  document.getElementById("prog-pct").textContent = "전체 " + Math.round(current / ALL.length * 100) + "%";
+  document.getElementById("bar-fill").style.width = ((current - sec.start) / (sec.end - sec.start) * 100) + "%";
+  document.getElementById("srctag").textContent = q.src;
+  document.getElementById("tipinner").innerHTML = "<b>" + q.src + "</b><br>" + (TIPS[q.src] || "");
+  document.getElementById("tipbox").open = false;
+  document.getElementById("qtext").innerHTML = "Q" + (current + 1) + ". " + q.q;
+  var box = document.getElementById("choices");
+  box.innerHTML = "";
+  var sayBtn = document.getElementById("say-btn");
+  var sayText = q.say || (isEnglish(q.answer) ? q.answer : "");
+  sayBtn.classList.toggle("hidden", !(speechOK && sayText));
+  sayBtn.onclick = function () { speak(sayText); };
+  q.shuffled.forEach(function (c, i) {
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "choice";
+    b.innerHTML = '<span class="num">' + CIRCLED[i] + "</span>" + c;
+    if (speechOK && q.spk !== false && isEnglish(c)) {
+      var sp = document.createElement("span");
+      sp.className = "say";
+      sp.textContent = "🔊";
+      sp.title = "발음 듣기";
+      sp.addEventListener("click", function (ev) { ev.stopPropagation(); ev.preventDefault(); speak(c); });
+      b.appendChild(sp);
+    }
+    b.addEventListener("click", function () { pick(c); });
+    box.appendChild(b);
+  });
+  lastTick = Date.now();
+}
+
+document.addEventListener("keydown", function (e) {
+  if (document.getElementById("quiz-card").classList.contains("hidden")) return;
+  var q = ALL[current];
+  if (!q) return;
+  var n = parseInt(e.key, 10);
+  if (n >= 1 && n <= q.shuffled.length) pick(q.shuffled[n - 1]);
+});
+
+var locked = false;
+function pick(choice) {
+  if (locked) return; locked = true;
+  var q = ALL[current];
+  var si = secIndex(current);
+  var ok = (choice === q.answer);
+  speak(q.say || (isEnglish(q.answer) ? q.answer : ""));
+  answersLog[current] = { no: current + 1, ok: ok, chosen: choice, answer: q.answer };
+  elapsed[si] += Math.min(180, Math.round((Date.now() - lastTick) / 1000));
+  current++;
+  saveState();
+  setTimeout(function () {
+    locked = false;
+    if (current === SECTIONS[si].end) showSectionResult(si);
+    else step();
+  }, 250);
+}
+
+/* ══════ 영역 결과 ══════ */
+function secStats(si) {
+  var sec = SECTIONS[si];
+  var slice = answersLog.slice(sec.start, sec.end).filter(function (l) { return !!l; });
+  var score = slice.filter(function (l) { return l.ok; }).length;
+  var wrong = slice.filter(function (l) { return !l.ok; }).map(function (l) { return l.no; });
+  return { slice: slice, score: score, total: sec.end - sec.start, wrong: wrong };
+}
+function sectionMsg(si) {
+  var st = secStats(si);
+  return "[영핏 여행 복습 100문제 " + (si + 1) + "/" + NSEC + " 결과]\n학생: " + studentName +
+         "\n영역: " + SECTIONS[si].name +
+         "\n점수: " + st.score + "/" + st.total +
+         "\n풀이 시간: " + Math.max(1, Math.round(elapsed[si] / 60)) + "분" +
+         "\n틀린 문항: " + (st.wrong.length ? st.wrong.join(", ") : "없음 👏") +
+         "\n- 영핏 지나티처";
+}
+function totalMsg() {
+  var parts = SECTIONS.map(function (s, si) {
+    var st = secStats(si);
+    return (si + 1) + "영역 " + st.score + "/" + st.total;
+  });
+  var done = answersLog.filter(function (l) { return !!l; });
+  var totalScore = done.filter(function (l) { return l.ok; }).length;
+  var allWrong = done.filter(function (l) { return !l.ok; }).map(function (l) { return l.no; });
+  return "[영핏 여행 복습 100문제 최종 결과]\n학생: " + studentName +
+         "\n퀴즈: 오서준 여행 복습 총정리 (100문항)" +
+         "\n" + parts.join(" / ") +
+         "\n총점: " + totalScore + "/" + ALL.length +
+         "\n틀린 문항: " + (allWrong.length ? allWrong.join(", ") : "없음 👏") +
+         "\n- 영핏 지나티처";
+}
+function copyText(btn, text, doneLabel) {
+  navigator.clipboard.writeText(text).then(function () {
+    btn.textContent = doneLabel;
+  }).catch(function () {
+    prompt("아래 내용을 길게 눌러 복사하세요", text);
+  });
+}
+function plain(s) { return String(s).replace(/<[^>]*>/g, ""); }
+
+function showSectionResult(si) {
+  var st = secStats(si);
+  var allDone = firstUndoneSec() === -1;
+  document.getElementById("sec-result-title").textContent =
+    allDone ? "모든 영역 완료! 정말 수고했어요 🎉" : (si + 1) + "영역 완료! 잘했어요 👏";
+  document.getElementById("sec-score").textContent = st.score + " / " + st.total;
+  document.getElementById("sec-wrong").textContent =
+    st.wrong.length ? "틀린 문항: " + st.wrong.join(", ") : "이 영역 전부 정답! 최고예요! 🏆";
+
+  var copyBtn = document.getElementById("sec-copy-btn");
+  copyBtn.textContent = (si + 1) + "영역 결과 복사 (카톡용)";
+  copyBtn.onclick = function () { copyText(copyBtn, sectionMsg(si), "복사 완료! 카톡에 붙여넣기 하세요 ✓"); };
+
+  var nextBtn = document.getElementById("next-sec-btn");
+  var nextSi = firstUndoneSec();
+  if (allDone) {
+    nextBtn.classList.add("hidden");
+    var totalScore = answersLog.filter(function (l) { return l && l.ok; }).length;
+    document.getElementById("total-block").classList.remove("hidden");
+    document.getElementById("total-score").textContent = totalScore + " / " + ALL.length;
+    document.getElementById("total-detail").textContent =
+      SECTIONS.map(function (s, idx) { var t = secStats(idx); return (idx + 1) + "영역 " + t.score + "/" + t.total; }).join("  ·  ");
+    var totalBtn = document.getElementById("total-copy-btn");
+    totalBtn.onclick = function () { copyText(totalBtn, totalMsg(), "복사 완료! 카톡에 붙여넣기 하세요 ✓"); };
+  } else {
+    nextBtn.classList.remove("hidden");
+    document.getElementById("total-block").classList.add("hidden");
+    nextBtn.textContent = "쉬었다가 " + (nextSi + 1) + "영역 개념 카드 보기 →";
+    nextBtn.onclick = function () { current = SECTIONS[nextSi].start; curSec = nextSi; lastTick = Date.now(); saveState(); step(); };
+  }
+
+  var expBox = document.getElementById("sec-explanations");
+  expBox.innerHTML = "";
+  st.slice.forEach(function (log) {
+    var q = ALL[log.no - 1];
+    var d = document.createElement("div");
+    d.className = "exp" + (log.ok ? "" : " wrong");
+    var ansLine = log.ok ? "" : '<span class="ans-line">내가 고른 답: ' + plain(log.chosen) + " → 정답: " + plain(q.answer) + "</span>";
+    d.innerHTML = '<div class="exp-head"><b>Q' + log.no + " " +
+      (log.ok ? "정답! ✓" : "오답 - 다시 보기") + "</b></div>" + ansLine + q.exp;
+    expBox.appendChild(d);
+  });
+
+  if (!sent[si]) {
+    sent[si] = true;
+    saveState();
+    engfitSubmit({
+      quizId: "clinic-osj-0916-p" + (si + 1),
+      quizTitle: "오서준 여행 복습 100문제 " + (si + 1) + "영역",
+      student: studentName,
+      score: st.score,
+      total: st.total,
+      wrong: st.wrong,
+      durationSec: elapsed[si],
+      detail: st.slice
+    });
+  }
+  show("sec-result-card");
+  setTimeout(playFanfare, 180);
+}
+
+</script>
+</body>
+</html>
